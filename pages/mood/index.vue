@@ -11,26 +11,12 @@
 </template>
 
 <script>
+  import { moodList } from '../../lib/api'
   export default {
-    data() {
-      return {
-        dataList: [
-          { id: 1,create_time: '2016-06-12',content: '出来混，迟早会还的' },
-          { id: 2,create_time: '2016-06-12',content: '出来混，迟早会还的' },
-          { id: 3,create_time: '2016-06-12',content: '出来混，迟早会还的' },
-          { id: 4,create_time: '2016-06-12',content: '出来混，迟早会还的' },
-          { id: 5,create_time: '2016-06-12',content: ' 当你老了，白发苍苍，睡意朦胧，在炉前打盹，慢慢吟诵，梦见你当年的双眼，那柔美的光芒与青幽的晕影。 ' },
-          { id: 6,create_time: '2016-06-12',content: ' 当你老了，白发苍苍，睡意朦胧，在炉前打盹，慢慢吟诵，梦见你当年的双眼，那柔美的光芒与青幽的晕影。 ' },
-        ]
-      }
+    async asyncData(){
+      let { rows } = await moodList();
+      return { dataList: rows };
     },
-    methods: {},
-    created() {
-
-    },
-    mounted() {
-
-    }
   }
 </script>
 
@@ -52,7 +38,7 @@
           line-height: 22px;
         }
         .create_time {
-          width: 125px;
+          width: 170px;
           padding-left: 25px;
           background-image: url("~assets/img/time.png");
           background-size: 16px;

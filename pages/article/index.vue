@@ -67,13 +67,9 @@
         ]
       }
     },
-    methods: {},
-    created() {
-
+    async fetch ({ store, params }) {
+      store.dispatch('menu/getMenuList');
     },
-    mounted() {
-
-    }
   }
 </script>
 

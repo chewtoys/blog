@@ -2,43 +2,24 @@
   <div class="sidebar-wrap">
     <h3>文章分类</h3>
     <ul>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/htmlcss' }">html/css</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/javascript' }">javascript</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/vue' }">vue</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/nuxt' }">nuxt</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/angular' }">angular</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/rn' }">react native</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ path: '/article/category/node' }">node</nuxt-link>
+      <li v-for="(menu,index) in menuList" :key="index">
+        <nuxt-link :to="{ path: `/article/category/${menu.nameSub}` }">{{ menu.name }}</nuxt-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
     export default {
-        data() {
-            return {}
-        },
-        methods: {},
-        created() {
-
-        },
-        mounted() {
-
-        }
+      data() {
+          return {}
+      },
+      computed: {
+        ...mapState({
+          menuList: state => state.menu.menuList,
+        })
+      },
     }
 </script>
 
@@ -50,8 +31,13 @@
     border-radius: 5px;
     box-shadow: 1px 1px 2px #A7A8AD;
     h3 {
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+      padding-left: 15px;
       background: linear-gradient(to left,#f90,#000);
       border-bottom: 1px solid #f90;
+      border-radius: 3px 3px 0 0 ;
     }
     ul {
       line-height: 1.5;

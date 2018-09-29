@@ -44,12 +44,6 @@
       return {}
     },
     methods: {},
-    created() {
-
-    },
-    mounted() {
-
-    }
   }
 </script>
 
