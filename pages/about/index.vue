@@ -1,6 +1,7 @@
 <template>
   <div class="about-wrap w">
     <h2 class="page-subject">关于我</h2>
+    <h3>爱好: {{ info.hobby }}</h3>
     <div class="about-text" v-html="info.introduction"></div>
   </div>
 </template>

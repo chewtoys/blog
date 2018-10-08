@@ -4,7 +4,7 @@
     <ul class="moods">
       <li v-for="(item,index) in dataList" :key="index">
         <p class="moods-extract">{{ item.content }}</p>
-        <p class="create_time">{{ item.create_time }}</p>
+        <p class="create_time">{{ item.create_time | formatDate  }}</p>
       </li>
     </ul>
   </div>
@@ -17,6 +17,11 @@
       let { rows } = await moodList();
       return { dataList: rows };
     },
+    filters: {
+      formatDate(val){
+          return val.replace('T',' ').replace('.000Z','');
+      }
+    }
   }
 </script>
 
