@@ -17,8 +17,8 @@
     components: {
       'article-category': articleCategory,
     },
-    data() {
-      return {}
+    validate ({ params }) {
+      return /^\d+$/.test(params.id)  // 必须是number类型
     },
     async asyncData ({ params }) {
       let { obj } = await getArticleDetail(params);

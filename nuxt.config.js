@@ -3,7 +3,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'nuxt',
+    title: '亲爱的混蛋',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -13,11 +13,22 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  css: ['~assets/css/reset.scss','~assets/css/style.scss'],
+  css: [
+    '~assets/css/reset.scss',
+    '~assets/css/style.scss',
+    'element-ui/lib/theme-chalk/index.css',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
+  ],
   /*
   ** Customize the progress bar color
   */
   loading: { color: '#f90' },
+  plugins: [
+    { src:'~plugins/element-ui', ssr: true },
+    { src: "~plugins/vue-quill-editor.js", ssr: false },
+  ],
   /*
   ** Build configuration
   */
@@ -54,6 +65,7 @@ module.exports = {
         })
       }
     },
+    vendor: ['element-ui'],
   }
 }
 

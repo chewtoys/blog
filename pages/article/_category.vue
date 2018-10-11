@@ -67,13 +67,6 @@
         ]
       }
     },
-    methods: {},
-    created() {
-
-    },
-    mounted() {
-
-    }
   }
 </script>
 

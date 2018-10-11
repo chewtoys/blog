@@ -4,17 +4,17 @@
     <ul class="articles">
       <li v-for="(item,index) in dataList" :key="index">
         <figure>
-          <nuxt-link :to="{ path: '/article/' + item.id }" title="">
+          <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">
             <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=73254038,3341181425&fm=26&gp=0.jpg" alt="">
           </nuxt-link>
         </figure>
         <div class="news-inner">
           <h3>
-            <nuxt-link :to="{ path: '/article/' + item.id }" title="">{{ item.title }}</nuxt-link>
+            <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">{{ item.title }}</nuxt-link>
           </h3>
           <p class="news-extract">
             {{ item.content.substr(0,200) + '...' }}
-            <nuxt-link :to="{ path: '/article/' + item.id }" title="">阅读全文</nuxt-link>
+            <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">阅读全文</nuxt-link>
           </p>
           <p class="extro-info">
             <span class="brand">{{ item.brand }}</span>

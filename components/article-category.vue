@@ -3,7 +3,7 @@
     <h3>文章分类</h3>
     <ul>
       <li v-for="(menu,index) in menuList" :key="index">
-        <nuxt-link :to="{ path: `/article/category/${menu.nameSub}` }">{{ menu.name }}</nuxt-link>
+        <nuxt-link :to="{ path: `/article/${menu.name_sub}` }">{{ menu.name }}</nuxt-link>
       </li>
     </ul>
   </div>

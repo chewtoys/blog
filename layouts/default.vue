@@ -11,6 +11,7 @@
           <nuxt-link :to="{ path: '/article' }" tag="li">技术分享</nuxt-link>
           <nuxt-link :to="{ path: '/mood' }" tag="li">胡言乱语</nuxt-link>
           <nuxt-link :to="{ path: '/about' }" tag="li">关于我</nuxt-link>
+          <nuxt-link :to="{ path: '/admin' }" tag="li">管理博客</nuxt-link>
         </ul>
       </nav>
     </header>
