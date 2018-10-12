@@ -39,38 +39,21 @@
 </template>
 
 <script>
+  import { moodList } from "../../lib/api";
   export default {
     data() {
       return {
         pageNo: 1,
         pageSize: 2,
-        tableData: [
-          {
-            "id": 1,
-            "content": "If you don't walk out, you will think that this is the whole world",
-            "create_time": "2018-10-03T14:54:04.000Z"
-          },
-          {
-            "id": 2,
-            "content": "If you don't walk out, you will think that this is the whole world",
-            "create_time": "2018-10-03T14:54:26.000Z"
-          },
-          {
-            "id": 3,
-            "content": "If you don't walk out, you will think that this is the whole world",
-            "create_time": "2018-10-03T14:54:36.000Z"
-          },
-          {
-            "id": 11,
-            "content": "测试插入数据库",
-            "create_time": "2018-10-07T14:22:27.000Z"
-          }
-        ],
-        dialogVisible: true,
+        dialogVisible: false,
         newMood: {
           content: '',
         }
       }
+    },
+    async asyncData(){
+      let { rows } = await moodList();
+      return { tableData: rows };
     },
     methods: {
       handleCurrentChange(){

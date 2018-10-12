@@ -17,7 +17,7 @@
 
     <el-pagination
       @current-change="handleCurrentChange"
-      :current-page.sync="pageNo"
+      :current-page="pageNo"
       :page-size="pageSize"
       background
       layout="total, prev, pager, next"
@@ -42,68 +42,24 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
-    data() {
-      return {
-        pageNo: 1,
-        pageSize: 2,
-        tableData: [
-          {
-            "id": 1,
-            "name": "html css",
-            "name_sub": "htmlcss",
-            "create_time": "2018-10-03T14:51:58.000Z",
-            " disable": 1
-          },
-          {
-            "id": 2,
-            "name": "javascript",
-            "name_sub": "js",
-            "create_time": "2018-10-03T14:51:59.000Z",
-            " disable": 1
-          },
-          {
-            "id": 3,
-            "name": "vue",
-            "name_sub": "vue",
-            "create_time": "2018-10-03T14:52:00.000Z",
-            " disable": 1
-          },
-          {
-            "id": 4,
-            "name": " nuxt",
-            "name_sub": "nuxt",
-            "create_time": "2018-10-03T14:52:01.000Z",
-            " disable": 1
-          },
-          {
-            "id": 5,
-            "name": "Angular",
-            "name_sub": "ng",
-            "create_time": "2018-10-03T14:52:02.000Z",
-            " disable": 1
-          },
-          {
-            "id": 6,
-            "name": "react native",
-            "name_sub": "rn",
-            "create_time": "2018-10-03T14:52:03.000Z",
-            " disable": 1
-          },
-          {
-            "id": 7,
-            "name": "node",
-            "name_sub": "node",
-            "create_time": "2018-10-03T14:52:05.000Z",
-            " disable": 1
-          }
-        ],
-        dialogVisible: true,
-        menuForm: {
-          name: '',
-          name_sub: '',
-        }
+    async fetch ({ store, params }) {
+      store.dispatch('menu/getMenuList');
+    },
+    data(){
+      return{
+
       }
+    },
+    computed: {
+      ...mapState({
+        tableData: state => state.menu.menuList,
+        pageNo: state => state.menu.pageNo,
+        pageSize: state => state.menu.pageSize,
+        dialogVisible: state => state.menu.dialogVisible,
+        menuForm: state => state.menu.menuForm,
+      })
     },
     methods: {
       handleCurrentChange(){
