@@ -1,5 +1,5 @@
 <template>
-  <div class="topnews">
+  <div class="topnews-wrap">
     <h2 class="page-subject">{{ pageSubject }}</h2>
     <ul class="articles">
       <li v-for="(item,index) in dataList" :key="index">
@@ -24,6 +24,9 @@
         </div>
       </li>
     </ul>
+    <div class="loadmore">
+      <el-button type="info" size="small" plain @click="loadMore">Load more</el-button>
+    </div>
   </div>
 </template>
 
@@ -43,12 +46,16 @@
     data() {
       return {}
     },
-    methods: {},
+    methods: {
+      loadMore(){
+
+      }
+    },
   }
 </script>
 
 <style lang="scss">
-  .topnews {
+  .topnews-wrap {
     flex: 1;
     padding: 20px 0 80px;
     .articles {
@@ -105,6 +112,10 @@
           }
         }
       }
+    }
+    .loadmore {
+      text-align: center;
+      padding: 20px 0;
     }
   }
 </style>

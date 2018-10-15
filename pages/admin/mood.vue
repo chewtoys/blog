@@ -1,5 +1,14 @@
 <template>
-  <div class="admin-article-wrap">
+  <div class="admin-mood-wrap">
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/admin' }">admin</el-breadcrumb-item>
+      <el-breadcrumb-item>胡言乱语</el-breadcrumb-item>
+    </el-breadcrumb>
+
+    <div class="create-btn pa">
+      <el-button type="primary" size="small" @click="toggleDialog">新增心情</el-button>
+    </div>
+
     <el-table :data="tableData" border>
       <el-table-column type="index"></el-table-column>
       <el-table-column prop="content" label="心情内容" min-width="250"></el-table-column>
@@ -8,59 +17,78 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="{ row }">
-
+          <el-button type="danger" size="small" plain @click="delItem(row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <el-pagination
-      @current-change="handleCurrentChange"
-      :current-page.sync="pageNo"
+      @current-change="handlePageChange"
+      :current-page="pageNo"
       :page-size="pageSize"
       background
       layout="total, prev, pager, next"
-      :total="tableData.length">
+      :total="total">
     </el-pagination>
 
-    <el-dialog title="发表心情" :visible.sync="dialogVisible" :modal="false" width="480px" :before-close="handleClose">
-      <el-form ref="form" :model="newMood">
-        <el-form-item>
+    <el-dialog title="发表心情" :visible.sync="dialogVisible" :modal="false" width="480px" :before-close="toggleDialog">
+      <el-form ref="form" :rules="rules" :model="dialogForm">
+        <el-form-item prop="content">
           <div>记录点滴心情:</div>
-          <el-input type="textarea" :rows="3" v-model="newMood.content"></el-input>
-          <div class="tip ar">还可输入{{ 120 - newMood.content.length }}个字</div>
+          <el-input type="textarea" :rows="3" v-model="dialogForm.content"></el-input>
+          <div class="tip ar">
+            <span v-if="dialogForm.content.length <= 120">还可输入{{ 120 - dialogForm.content.length }}个字</span>
+            <span v-else>输入超过{{ dialogForm.content.length - 120 }}个字</span>
+          </div>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="small" @click="dialogVisible = false">提 交</el-button>
+        <el-button @click="toggleDialog">取 消</el-button>
+        <el-button type="primary" size="small" @click="submit">提 交</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-  import { moodList } from "../../lib/api";
+  import { mapState,mapActions,mapMutations } from "vuex"
   export default {
     data() {
       return {
-        pageNo: 1,
-        pageSize: 2,
-        dialogVisible: false,
-        newMood: {
-          content: '',
+        rules: {
+          content: [
+            { required: true, message: '请输入心情', trigger: 'blur' },
+            { max: 120, message: '最多输入120个字符', trigger: 'blur' }
+          ],
         }
       }
     },
-    async asyncData(){
-      let { rows } = await moodList();
-      return { tableData: rows };
+    async fetch ({ store }) {
+      store.dispatch('mood/search');
+    },
+    computed: {
+      ...mapState({
+        tableData: state => state.mood.dataList,
+        pageNo: state => state.mood.pageNo,
+        pageSize: state => state.mood.pageSize,
+        total: state => state.mood.total,
+        dialogVisible: state => state.mood.dialogVisible,
+        dialogForm: state => state.mood.dialogForm,
+      })
     },
     methods: {
-      handleCurrentChange(){
-
+      ...mapActions('mood',['search','addItem','delItem']),
+      ...mapMutations('mood',['toggleDialog','setPagination']),
+      handlePageChange(pageNo){
+        this.setPagination(pageNo);
+        this.search();
       },
-      handleClose(){
-
+      submit(){
+        this.$refs.form.validate((valid) => {
+          if (valid) {
+            this.addItem();
+          }
+        });
       }
     },
     filters: {
@@ -70,9 +98,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  .admin-article-wrap {
-
-  }
-</style>

@@ -3,9 +3,9 @@
     <nav>
       <ul class="sidebar">
         <nuxt-link :to="{ path: '/admin' }" tag="li">关于我</nuxt-link>
+        <nuxt-link :to="{ path: '/admin/mood' }" tag="li">胡言乱语</nuxt-link>
         <nuxt-link :to="{ path: '/admin/menu' }" tag="li">文章分类</nuxt-link>
         <nuxt-link :to="{ path: '/admin/article' }" tag="li">文章列表</nuxt-link>
-        <nuxt-link :to="{ path: '/admin/mood' }" tag="li">胡言乱语</nuxt-link>
       </ul>
     </nav>
     <div class="admin-content">
@@ -51,7 +51,7 @@
     box-shadow: 0 0 5px 2px #ccc;
     flex: 1;
     min-height: 800px;
-    padding: 20px;
+    padding: 30px 20px;
     margin-left: 15px;
   }
 }

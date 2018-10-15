@@ -97,6 +97,9 @@ body {
 .red {
   color: $red;
 }
+.green {
+  color: $green;
+}
 .blue-bg {
   color: #fff;
   background-color: $blue;
@@ -168,6 +171,9 @@ b {
 .el-table--border, .el-table--group {
   border: 1px solid #ccc !important;
 }
+.tab-opera a {
+  margin-right: 10px;
+}
 
 /*
  *   pagination
@@ -175,6 +181,15 @@ b {
 .el-pagination {
   text-align: right;
   padding: 20px 0 30px !important;
+}
+
+/*
+ *   pagination
+*/
+.el-breadcrumb {
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc;
+  margin-bottom: 10px;
 }
 
 /*

@@ -28,9 +28,6 @@
     created() {
 
     },
-    mounted() {
-
-    }
   }
 </script>
 

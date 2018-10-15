@@ -1,66 +1,79 @@
 <template>
   <div class="admin-article-wrap">
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/admin' }">admin</el-breadcrumb-item>
+      <el-breadcrumb-item>文章列表</el-breadcrumb-item>
+    </el-breadcrumb>
+
+    <div class="create-btn pa">
+      <el-button type="primary" size="small">新增文章</el-button>
+    </div>
+
     <el-table :data="tableData" border>
       <el-table-column type="index"></el-table-column>
       <el-table-column prop="title" label="标题" min-width="250"></el-table-column>
-      <el-table-column prop="brand" label="标签"></el-table-column>
-      <el-table-column prop="viewnum" label="浏览量"></el-table-column>
+      <el-table-column prop="brand" label="标签" width="100"></el-table-column>
+      <el-table-column prop="viewnum" label="浏览量" width="100"></el-table-column>
       <el-table-column prop="create_time" label="发布日期">
         <template slot-scope="{ row }">{{ row.create_time | formatDate }}</template>
       </el-table-column>
       <el-table-column prop="update_time" label="更新日期">
         <template slot-scope="{ row }">{{ row.update_time | formatDate }}</template>
       </el-table-column>
-      <el-table-column label="操作" width="220">
+      <el-table-column label="操作" width="280" class-name="tab-opera">
         <template slot-scope="{ row }">
-          <nuxt-link :to="{ path: `/admin/article/${row.id}` }">查看详情</nuxt-link>
-          <nuxt-link to="/">编辑</nuxt-link>
-          <nuxt-link to="/">启用</nuxt-link>
-          <nuxt-link to="/">禁用</nuxt-link>
-          <nuxt-link to="/">删除</nuxt-link>
+          <nuxt-link :to="{ path: `/admin/article/${row.id}` }">
+            <el-button size="small" plain>查看</el-button>
+          </nuxt-link>
+          <nuxt-link :to="{ path: `/admin/article/${row.id}` }">
+            <el-button type="primary" size="small" plain>编辑</el-button>
+          </nuxt-link>
+          <el-button type="danger" size="small" plain @click="delItem(row.id)">删除</el-button>
+          <el-button type="success" size="small" plain>启用</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <el-pagination
       @current-change="handleCurrentChange"
-      :current-page.sync="pageNo"
+      :current-page="pageNo"
       :page-size="pageSize"
       background
       layout="total, prev, pager, next"
-      :total="tableData.length">
+      :total="total">
     </el-pagination>
   </div>
 </template>
 
 <script>
-  import { getArticleList } from "../../../lib/api";
+  import { mapState,mapActions,mapMutations } from "vuex"
   export default {
-    data() {
-      return {
-        pageNo: 1,
-        pageSize: 2,
-      }
+    computed: {
+      ...mapState({
+        tableData: state => state.article.dataList,
+        pageNo: state => state.article.pageNo,
+        pageSize: state => state.article.pageSize,
+        total: state => state.article.total,
+        dialogVisible: state => state.article.dialogVisible,
+        dialogForm: state => state.article.dialogForm,
+      })
     },
-    async asyncData(){
-      let { rows } = await getArticleList();
-      return { tableData: rows };
+    async fetch ({ store }) {
+      store.dispatch('article/search');
     },
     methods: {
-      handleCurrentChange(){
-
-      }
+      ...mapActions('article',['search','addItem','delItem']),
+      ...mapMutations('article',['toggleDialog','setPagination']),
+      handleCurrentChange(pageNo){
+        this.setPagination(pageNo);
+        this.search();
+      },
     },
     filters: {
       formatDate(val){
-        return val.replace('T',' ').replace('.000Z','');
+        return val ? val.replace('T',' ').replace('.000Z','') : '';
       }
     }
   }
 </script>
 
-<style lang="scss">
-.admin-article-wrap {
-
-}
-</style>
