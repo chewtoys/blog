@@ -1,11 +1,11 @@
 <template>
-  <div class="topnews-wrap">
+  <div class="article-list-wrap">
     <h2 class="page-subject">{{ pageSubject }}</h2>
     <ul class="articles">
-      <li v-for="(item,index) in dataList" :key="index">
+      <li v-for="(item,index) in articleList" :key="index">
         <figure>
           <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">
-            <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=73254038,3341181425&fm=26&gp=0.jpg" alt="">
+            <img :src="baseImgPath + item.brand + '.jpg'" alt="">
           </nuxt-link>
         </figure>
         <div class="news-inner">
@@ -13,49 +13,95 @@
             <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">{{ item.title }}</nuxt-link>
           </h3>
           <p class="news-extract">
-            {{ item.content.substr(0,200) + '...' }}
+            {{ item.content | abstractFormat }}
             <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">阅读全文</nuxt-link>
           </p>
           <p class="extro-info">
             <span class="brand">{{ item.brand }}</span>
-            <span class="create_time">{{ item.create_time }}</span>
+            <span class="create_time">{{ item.create_time | formatDate }}</span>
             <span class="viewnum">浏览({{ item.viewnum }})</span>
           </p>
         </div>
       </li>
     </ul>
-    <div class="loadmore">
-      <el-button type="info" size="small" plain @click="loadMore">Load more</el-button>
+    <div class="loadmore" v-if="pageSubject !== '最新文章' && articleList.length">
+      <el-button type="info" size="small" plain @click="loadMore">{{ loadMsg }}</el-button>
     </div>
+    <div class="no-data" v-if="!articleList.length">暂无数据</div>
   </div>
 </template>
 
 <script>
+  import { getArticleList } from '../lib/api'
+  import { baseImgPath } from "../lib/env";
+
   export default {
     props: {
       dataList: {
         type: Array,
-        required: true,
+        required: false
       },
       pageSubject: {
         type: String,
-        required: true,
-        default: '',
+        required: true
       }
     },
     data() {
-      return {}
-    },
-    methods: {
-      loadMore(){
-
+      return {
+        pageNo: 1,
+        pageSize: 10,
+        total: 10,
+        articleList: [],
+        loadMsg: '加载更多',
+        brand: '',
+        baseImgPath: baseImgPath,
       }
     },
+    methods: {
+      async search(){
+        let data = {
+          pageNo: this.pageNo,
+          pageSize: this.pageSize,
+          brand: this.$route.params.category,
+        };
+        let res = await getArticleList(data);
+        this.articleList = res.rows;
+        this.total = res.total;
+      },
+      async loadMore(){
+        if(this.pageNo*this.pageSize >= this.total ) {
+          return this.loadMsg = '我是有底限的!!!'
+        }
+        this.pageNo += 1;
+        let data = {
+          pageNo: this.pageNo,
+          pageSize: this.pageSize,
+          brand: this.$route.params.category,
+        };
+        let res = await getArticleList(data);
+        this.articleList = this.articleList.concat(res.rows);
+      }
+    },
+    created(){
+      if(this.pageSubject === '最新文章'){
+        this.articleList = this.dataList;
+      }else{
+         this.search();
+      }
+    },
+    filters: {
+      abstractFormat(val){
+        return val.replace(/<[^>]+>/g,'').substring(0,200);
+      },
+      formatDate(val){
+        return val ? val.replace('T',' ').replace('.000Z','') : '';
+      }
+    }
   }
 </script>
 
 <style lang="scss">
-  .topnews-wrap {
+  .article-list-wrap {
     flex: 1;
     padding: 20px 0 80px;
     .articles {
@@ -116,6 +162,10 @@
     .loadmore {
       text-align: center;
       padding: 20px 0;
+    }
+    .no-data {
+      margin: 30px 0;
+      text-align: center;
     }
   }
 </style>

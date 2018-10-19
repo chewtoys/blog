@@ -1,22 +1,24 @@
 <template>
   <section class="w">
-    <news-list :data-list="topnews" page-subject="最新文章"></news-list>
+    <article-list :data-list="dataList" page-subject="最新文章"></article-list>
   </section>
 </template>
 
 <script>
   import { getArticleList } from "../lib/api"
-  import newslist from '~/components/news-list.vue'
+  import articleList from '~/components/article-list.vue'
   export default {
     components: {
-      'news-list': newslist
+      'article-list': articleList
     },
     data(){
       return {}
     },
     async asyncData ({ params }) {
-      let { rows } = await getArticleList();
-      return { topnews: rows };
+      let res = await getArticleList();
+      return {
+        dataList: res.rows,
+      };
     },
   }
 </script>

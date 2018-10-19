@@ -6,7 +6,7 @@
     </el-breadcrumb>
 
     <div class="create-btn pa">
-      <el-button type="primary" size="small">新增文章</el-button>
+      <el-button type="primary" size="small" @click="addArticle">新增文章</el-button>
     </div>
 
     <el-table :data="tableData" border>
@@ -22,14 +22,13 @@
       </el-table-column>
       <el-table-column label="操作" width="280" class-name="tab-opera">
         <template slot-scope="{ row }">
-          <nuxt-link :to="{ path: `/admin/article/${row.id}` }">
+          <nuxt-link :to="{ path: `/articleDetail/${row.id}` }" target="_blank">
             <el-button size="small" plain>查看</el-button>
           </nuxt-link>
           <nuxt-link :to="{ path: `/admin/article/${row.id}` }">
             <el-button type="primary" size="small" plain>编辑</el-button>
           </nuxt-link>
           <el-button type="danger" size="small" plain @click="delItem(row.id)">删除</el-button>
-          <el-button type="success" size="small" plain>启用</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -48,18 +47,16 @@
 <script>
   import { mapState,mapActions,mapMutations } from "vuex"
   export default {
+    async fetch ({ store }) {
+      store.dispatch('article/search');
+    },
     computed: {
       ...mapState({
         tableData: state => state.article.dataList,
         pageNo: state => state.article.pageNo,
         pageSize: state => state.article.pageSize,
         total: state => state.article.total,
-        dialogVisible: state => state.article.dialogVisible,
-        dialogForm: state => state.article.dialogForm,
       })
-    },
-    async fetch ({ store }) {
-      store.dispatch('article/search');
     },
     methods: {
       ...mapActions('article',['search','addItem','delItem']),
@@ -67,6 +64,9 @@
       handleCurrentChange(pageNo){
         this.setPagination(pageNo);
         this.search();
+      },
+      addArticle(){
+        this.$router.push("/admin/article/0"); // 0 表示新建
       },
     },
     filters: {

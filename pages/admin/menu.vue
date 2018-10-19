@@ -12,7 +12,6 @@
     <el-table :data="tableData" border>
       <el-table-column type="index"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
-      <el-table-column prop="name_sub" label="名称简写"></el-table-column>
       <el-table-column prop="disable" label="状态">
         <template slot-scope="{ row }">
           <i class="el-icon-circle-check green f16" v-if="row.disable"></i>
@@ -35,9 +34,6 @@
         <el-form-item prop="name" label="目录名称">
           <el-input type="text" v-model="dialogForm.name"></el-input>
         </el-form-item>
-        <el-form-item prop="name_sub" label="名称简写">
-          <el-input type="text" v-model="dialogForm.name_sub"></el-input>
-        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="toggleDialog">取 消</el-button>
@@ -59,11 +55,7 @@
           name: [
             { required: true, message: '请输入目录名称', trigger: 'blur' },
             { max: 12, message: '最多输入12个字符', trigger: 'blur' }
-          ],
-          name_sub: [
-            { required: true, message: '请输入名称简写', trigger: 'blur' },
-            { max: 12, message: '最多输入12个字符', trigger: 'blur' }
-          ],
+          ]
         }
       }
     },

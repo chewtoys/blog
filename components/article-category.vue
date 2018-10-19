@@ -3,22 +3,28 @@
     <h3>文章分类</h3>
     <ul>
       <li v-for="(menu,index) in menuList" :key="index">
-        <nuxt-link :to="{ path: `/article/${menu.name_sub}` }">{{ menu.name }}</nuxt-link>
+        <nuxt-link :to="{ path: `/article/${menu.name}` }">{{ menu.name }}</nuxt-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState,mapActions } from 'vuex'
     export default {
       data() {
           return {}
       },
       computed: {
         ...mapState({
-          menuList: state => state.menu.menuList,
+          menuList: state => state.menu.dataList,
         })
+      },
+      methods: {
+        ...mapActions('menu',['search']),
+      },
+      created(){
+        this.search();
       },
     }
 </script>

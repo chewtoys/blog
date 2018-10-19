@@ -21,7 +21,17 @@
   export default {
     methods: {
       logout(){
+        sessionStorage.removeItem('token');
         this.$router.push('/');
+      }
+    },
+    created(){
+      let isClient = process.client;
+      if(isClient){
+        let token = sessionStorage.getItem('token');
+        if (!token) {
+          this.$router.push('/login');
+        }
       }
     }
   }

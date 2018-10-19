@@ -27,16 +27,7 @@
       </el-form-item>
 
       <el-form-item label="简介" prop="introduction">
-        <div class="quill-editor"
-             sytle="min-height: 500px;"
-             :content="info.introduction"
-             @change="onEditorChange($event)"
-             @blur="onEditorBlur($event)"
-             @focus="onEditorFocus($event)"
-             @ready="onEditorReady($event)"
-             v-quill:myQuillEditor="editorOption"
-        >
-        </div>
+        <rich-editor v-model="info.introduction"></rich-editor>
       </el-form-item>
 
       <el-form-item v-if="editModel">
@@ -49,7 +40,11 @@
 
 <script>
   import { aboutInfo,updateAbout } from "../../lib/api";
+  import richEditor from '../../components/rich-editor';
   export default {
+    components: {
+      richEditor
+    },
     async asyncData(){
       let { obj } = await aboutInfo();
       return { info: obj };
@@ -57,32 +52,17 @@
     data(){
       return {
         editModel: false,
-        editorOption: {
-          modules: {
-            toolbar: [['bold', 'italic', 'underline', 'strike'],['blockquote', 'code-block']]
-          }
-        },
         articleForm: {
           title: '',
           brand_id: '',
           content: '',
         },
         rules: {
-          nickname: [
-            { required: true, message: '请输入昵称', trigger: 'blur' },
-          ],
-          age: [
-            { required: true, message: '请输入年龄', trigger: 'blur' },
-          ],
-          birthplace: [
-            { required: true, message: '请输入出生地', trigger: 'blur' },
-          ],
-          hobby: [
-            { required: true, message: '请输入爱好', trigger: 'blur' },
-          ],
-          introduction: [
-            { required: true, message: '请输入简介', trigger: 'blur' },
-          ]
+          nickname: [{ required: true, message: '请输入昵称', trigger: 'blur' },],
+          age: [{ required: true, message: '请输入年龄', trigger: 'blur' },],
+          birthplace: [{ required: true, message: '请输入出生地', trigger: 'blur' },],
+          hobby: [{ required: true, message: '请输入爱好', trigger: 'blur' },],
+          introduction: [{ required: true }]
         }
       }
     },
@@ -96,23 +76,10 @@
           }
         });
       },
-      onEditorChange({ editor, html, text }) {
-        this.info.introduction = html;
-      },
-      onEditorBlur(editor) {},
-      onEditorFocus(editor) {},
-      onEditorReady(editor) {},
-    },
-    created(){
-
     }
   }
 </script>
 
 <style lang="scss">
-.admin-about-wrap {
-  .w300 {
-    width: 300px;
-  }
-}
+
 </style>

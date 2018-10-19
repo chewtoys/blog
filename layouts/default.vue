@@ -7,11 +7,19 @@
       </div>
       <nav>
         <ul class="w">
-          <nuxt-link :to="{ path: '/' }" tag="li">首页</nuxt-link>
-          <nuxt-link :to="{ path: '/article' }" tag="li">技术分享</nuxt-link>
-          <nuxt-link :to="{ path: '/mood' }" tag="li">胡言乱语</nuxt-link>
-          <nuxt-link :to="{ path: '/about' }" tag="li">关于我</nuxt-link>
-          <nuxt-link :to="{ path: '/admin' }" tag="li">管理博客</nuxt-link>
+          <li>
+            <nuxt-link :to="{ path: '/' }">首页</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{ path: '/article' }">技术分享</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{ path: '/mood' }">胡言乱语</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{ path: '/about' }">关于我</nuxt-link>
+          </li>
+          <li @click="toAdmin">管理博客</li>
         </ul>
       </nav>
     </header>
@@ -25,6 +33,21 @@
     </footer>
   </div>
 </template>
+
+<script>
+  export default {
+    methods: {
+      toAdmin(){
+        let isClient = process.client;
+        if(isClient && sessionStorage.getItem('token')){
+          this.$router.push('/admin');
+        }else {
+          this.$router.push('/login');
+        }
+      }
+    },
+  }
+</script>
 
 <style lang="scss">
 html {
@@ -49,13 +72,17 @@ html {
       background: linear-gradient(to left,#f90,#000 40%);
       ul {
         @include centerBox(flex-start);
-        color: #fff;
         font-size: 16px;
         li {
           height: 60px;
           line-height: 60px;
           padding: 0 15px;
           cursor: pointer;
+          color: #fff;
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
           &:hover {
             background: #f90;
           }

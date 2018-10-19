@@ -17,6 +17,7 @@
 <script>
   export default {
     layout: 'admin',
+    middleware: 'userAuth',
   }
 </script>
 

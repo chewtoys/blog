@@ -7,6 +7,9 @@
         <p class="create_time">{{ item.create_time | formatDate  }}</p>
       </li>
     </ul>
+    <div class="loadmore">
+      <el-button type="info" size="small" plain @click="loadMore">{{ loadMsg }}</el-button>
+    </div>
   </div>
 </template>
 
@@ -14,8 +17,28 @@
   import { moodList } from '../../lib/api'
   export default {
     async asyncData(){
-      let { rows } = await moodList();
-      return { dataList: rows };
+      let res = await moodList({ pageNo: 1,pageSize: 10 });
+      return {
+        dataList: res.rows,
+        total: res.total
+      };
+    },
+    data(){
+      return {
+        pageNo: 1,
+        pageSize: 10,
+        loadMsg: '加载更多'
+      }
+    },
+    methods: {
+      async loadMore(){
+        if(this.pageNo*this.pageSize >= this.total ) {
+          return this.loadMsg = '我是有底限的!!!'
+        }
+        this.pageNo += 1;
+        let res = await moodList({ pageNo: this.pageNo,pageSize: this.pageSize });
+        this.dataList = this.dataList.concat(res.rows);
+      }
     },
     filters: {
       formatDate(val){
@@ -51,6 +74,10 @@
           background-repeat: no-repeat;
         }
       }
+    }
+    .loadmore {
+      text-align: center;
+      padding: 20px 0;
     }
   }
 </style>

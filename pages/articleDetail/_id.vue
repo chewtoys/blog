@@ -1,7 +1,7 @@
 <template>
-  <div class="article-wrap w">
+  <div class="article-detail-wrap w">
     <div class="article-detail">
-      <h2 class="page-subject">技术分享</h2>
+      <h2 class="page-subject">博客正文</h2>
       <h3 class="article-title">{{ articleDetail.title }}</h3>
       <div class="article-content" v-html="articleDetail.content"></div>
     </div>
@@ -25,13 +25,13 @@
       return { articleDetail: obj };
     },
     async fetch ({ store, params }) {
-      store.dispatch('menu/getMenuList');
+      store.dispatch('menu/search');
     },
   }
 </script>
 
 <style lang="scss">
-  .article-wrap {
+  .article-detail-wrap {
     @include centerBox(center,flex-start);
     .article-detail {
       padding: 20px 0;
