@@ -3,7 +3,9 @@
     <div class="article-detail">
       <h2 class="page-subject">博客正文</h2>
       <h3 class="article-title">{{ articleDetail.title }}</h3>
-      <div class="article-content" v-html="articleDetail.content"></div>
+      <div class="quill-editor ql-container ql-snow">
+        <div class="ql-editor article-content" v-html="articleDetail.content"></div>
+      </div>
     </div>
 
     <article-category></article-category>

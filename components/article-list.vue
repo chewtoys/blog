@@ -19,7 +19,7 @@
           <p class="extro-info">
             <span class="brand">{{ item.brand }}</span>
             <span class="create_time">{{ item.create_time | formatDate }}</span>
-            <span class="viewnum">浏览({{ item.viewnum }})</span>
+            <!--<span class="viewnum">浏览({{ item.viewnum }})</span>-->
           </p>
         </div>
       </li>

@@ -8,24 +8,26 @@
       </el-form-item>
 
       <el-form-item prop="password" class="w300">
-        <el-input type="text" clearable v-model="form.password">
+        <el-input type="text" clearable v-model="form.password" @keypress.enter.native="submit">
           <template slot="prepend">密&nbsp;&nbsp;&nbsp;码</template>
         </el-input>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" size="middle" @click="submit" class="w300">保存</el-button>
+        <el-button type="primary" size="middle" @click="submit" class="w300">登  录</el-button>
       </el-form-item>
 
       <el-form-item class="login-back">
         <nuxt-link to="/">前往首页</nuxt-link>
       </el-form-item>
     </el-form>
+    <canvas></canvas>
   </div>
 </template>
 
 <script>
   import { login } from "../lib/api";
+  import { canvas } from "../lib/canvas";
 
   export default {
     layout: 'login',
@@ -55,13 +57,20 @@
             }
           }
         });
-      }
+      },
     },
+    mounted(){
+      canvas();
+    }
   }
 </script>
 
 <style lang="scss">
 .login-wrap {
+  .el-form {
+    position: relative;
+    z-index: 2;
+  }
   background: #fff;
   padding: 40px 40px 10px;
   border-radius: 8px;
@@ -71,5 +80,16 @@
       color: #409EFF;
     }
   }
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 }
 </style>
+
+
+

@@ -53,11 +53,11 @@
       return {
         richText: '',                               // 文本编辑器内容
         quillUpdateImg: false,                     // 根据图片上传状态来确定是否显示loading动画，刚开始是false,不显示
-        serverUrl: 'http://127.0.0.1:5000/upload',  // 这里写你要上传的图片服务器地址
+        serverUrl: baseImgPath,  // 这里写你要上传的图片服务器地址
         header: {},                                 // 有的图片服务器要求请求头需要有token之类的参数，写在这里
         editorOption: {
           placeholder: '请输入内容',
-          theme: 'snow',                            // or 'bubble'
+          theme: 'snow',                            // 'snow' or 'bubble'
           modules: {
             toolbar: {
               container: toolbarOptions,            // 工具栏
@@ -103,8 +103,9 @@
       // 上传图片失败
       uploadError(res, file) {},
       onEditorChange({ editor, html, text }) {
-        this.richText = html;
-        this.$emit('input',html);
+        // 处理单引号，不然有bug
+        this.richText = html.replace(/'/,'"');
+        this.$emit('input',this.richText);
       },
       onEditorBlur(editor) {},
       onEditorFocus(editor) {},

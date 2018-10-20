@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { moodList } from '../../lib/api'
+  import { moodList } from '../lib/api'
   export default {
     async asyncData(){
       let res = await moodList({ pageNo: 1,pageSize: 10 });
