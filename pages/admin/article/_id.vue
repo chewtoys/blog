@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import { getArticleDetail,menuList,addArticle,updateArticle } from "../../../lib/api";
+  import { getArticleDetail,brandList,addArticle,updateArticle } from "../../../lib/api";
   import richEditor from '../../../components/rich-editor';
 
   export default {
@@ -45,11 +45,11 @@
     },
     async asyncData ({ params }) {
       if(params.id == 0) {
-        let { rows } = await menuList();
+        let { rows } = await brandList();
         return { brandList: rows };
       }else {
         let res = await Promise.all([
-          menuList(),
+          brandList(),
           getArticleDetail(params)
         ]);
         return {

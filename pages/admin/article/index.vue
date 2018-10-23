@@ -48,7 +48,7 @@
   import { mapState,mapActions,mapMutations } from "vuex"
   export default {
     async fetch ({ store }) {
-      store.dispatch('article/search');
+      await store.dispatch('article/search');
     },
     computed: {
       ...mapState({
@@ -71,7 +71,7 @@
     },
     filters: {
       formatDate(val){
-        return val ? val.replace('T',' ').replace('.000Z','') : '';
+        return val ? val.substring(0,19) : '';
       }
     }
   }

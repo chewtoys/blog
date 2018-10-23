@@ -29,7 +29,7 @@
     </div>
 
     <footer>
-      <p class="copyright">Copyright © 2018</p>
+      <p class="copyright">Copyright © 2018 - 亲爱的混蛋</p>
     </footer>
   </div>
 </template>
@@ -47,7 +47,8 @@
       }
     },
     mounted(){
-      console.log("%c非礼勿视"," text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
+      // console.log("%c亲爱的混蛋"," text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em");
+      console.log("%c亲爱的混蛋"," text-shadow: 0 0 4px white, 0 -5px 6px #FFE500, 2px -10px 5px #FFCC00, -2px -2px 20px #FFCC00, 0px -10px 5px #FF8000; color: #f90;font-weight: 700; font-size:5em");
     }
   }
 </script>
@@ -85,6 +86,7 @@ html {
           a {
             color: inherit;
             text-decoration: none;
+            display: block;
           }
           &:hover {
             background: #f90;

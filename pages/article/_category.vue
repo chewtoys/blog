@@ -13,6 +13,9 @@
       'article-list': articleList,
       'article-category': articleCategory,
     },
+    validate ({ params }) {
+      return /^[a-zA-Z]+$/.test(params.category);  // Must be a string
+    }
   }
 </script>
 

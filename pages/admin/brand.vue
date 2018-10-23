@@ -11,7 +11,7 @@
 
     <el-table :data="tableData" border>
       <el-table-column type="index"></el-table-column>
-      <el-table-column prop="name" label="名称"></el-table-column>
+      <el-table-column prop="brand_name" label="名称"></el-table-column>
       <el-table-column prop="disable" label="状态">
         <template slot-scope="{ row }">
           <i class="el-icon-circle-check green f16" v-if="row.disable"></i>
@@ -31,8 +31,8 @@
 
     <el-dialog :title="dialogForm.id ? '修改目录':'添加目录'" :visible.sync="dialogVisible" :modal="false" width="480px" :before-close="toggleDialog">
       <el-form ref="form" :rules="rules" :model="dialogForm">
-        <el-form-item prop="name" label="目录名称">
-          <el-input type="text" v-model="dialogForm.name"></el-input>
+        <el-form-item prop="brand_name" label="目录名称">
+          <el-input type="text" v-model="dialogForm.brand_name"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -47,12 +47,12 @@
   import { mapState,mapActions,mapMutations } from "vuex"
   export default {
     async fetch ({ store, params }) {
-      store.dispatch('menu/search');
+      await store.dispatch('brand/search');
     },
     data(){
       return{
         rules: {
-          name: [
+          brand_name: [
             { required: true, message: '请输入目录名称', trigger: 'blur' },
             { max: 12, message: '最多输入12个字符', trigger: 'blur' }
           ]
@@ -61,14 +61,14 @@
     },
     computed: {
       ...mapState({
-        tableData: state => state.menu.dataList,
-        dialogVisible: state => state.menu.dialogVisible,
-        dialogForm: state => state.menu.dialogForm,
+        tableData: state => state.brand.dataList,
+        dialogVisible: state => state.brand.dialogVisible,
+        dialogForm: state => state.brand.dialogForm,
       })
     },
     methods: {
-      ...mapActions('menu',['search','addItem','delItem','updateItem']),
-      ...mapMutations('menu',['toggleDialog','setDialogForm']),
+      ...mapActions('brand',['search','addItem','delItem','updateItem']),
+      ...mapMutations('brand',['toggleDialog','setDialogForm']),
       submit(id){
         this.$refs.form.validate((valid) => {
           if (valid) {
@@ -83,7 +83,7 @@
     },
     filters: {
       formatDate(val){
-        return val.replace('T',' ').replace('.000Z','');
+        return val ? val.substring(0,19) : '';
       }
     }
   }

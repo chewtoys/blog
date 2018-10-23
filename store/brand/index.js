@@ -6,7 +6,7 @@ export const state = {
   dialogVisible: false,
   dialogForm: {
     id: 0,
-    name: '',
+    brand_name: '',
   },
 };
 

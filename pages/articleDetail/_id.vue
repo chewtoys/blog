@@ -27,7 +27,7 @@
       return { articleDetail: obj };
     },
     async fetch ({ store, params }) {
-      store.dispatch('menu/search');
+      await store.dispatch('brand/search');
     },
   }
 </script>

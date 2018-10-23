@@ -42,9 +42,16 @@
     },
     filters: {
       formatDate(val){
-          return val.replace('T',' ').replace('.000Z','');
+        return val ? val.substring(0,19) : '';
       }
-    }
+    },
+    head () {
+      return {
+        meta: [
+          { hid: 'description', name: 'description', content: '亲爱的混蛋的心路历程' }
+        ]
+      }
+    },
   }
 </script>
 

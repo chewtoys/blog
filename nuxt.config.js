@@ -7,7 +7,9 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'author', name: 'author', content: '亲爱的混蛋' },
+      { hid: 'keywords', name: 'keywords', content: '亲爱的混蛋,个人博客,前端博客,Nuxt,vue服务端渲染,ssr服务端渲染,srr单页面' },
+      { hid: 'description', name: 'description', content: '亲爱的混蛋个人博客,基于Nuxt+axios+mysql+nginx技术栈' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -33,6 +35,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    analyze: true,
     /*
     ** Run ESLint on save
     */
@@ -65,7 +68,7 @@ module.exports = {
         })
       }
     },
-    vendor: ['element-ui'],
+    // vendor: ['element-ui','axios','vue-quill-editor'],
   }
 }
 

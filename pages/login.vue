@@ -31,6 +31,13 @@
 
   export default {
     layout: 'login',
+    head () {
+      return {
+        meta: [
+          { hid: 'description', name: 'description', content: '亲爱的混蛋博客管理后台' }
+        ]
+      }
+    },
     data() {
       return {
         form: {

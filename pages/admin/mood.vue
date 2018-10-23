@@ -64,7 +64,7 @@
       }
     },
     async fetch ({ store }) {
-      store.dispatch('mood/search');
+      await store.dispatch('mood/search');
     },
     computed: {
       ...mapState({
@@ -93,7 +93,7 @@
     },
     filters: {
       formatDate(val){
-        return val.replace('T',' ').replace('.000Z','');
+        return val ? val.substring(0,19) : '';
       }
     }
   }

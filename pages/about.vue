@@ -11,7 +11,14 @@
 <script>
   import { aboutInfo } from "../lib/api";
   export default {
-    async asyncData(){
+    head () {
+      return {
+        meta: [
+          { hid: 'description', name: 'description', content: '关于亲爱的混蛋,亲爱的混蛋简介' }
+        ]
+      }
+    },
+    async asyncData({isClient,isServer,isDev}){
       let { obj } = await aboutInfo();
       return { info: obj };
     },

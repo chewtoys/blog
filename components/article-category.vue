@@ -2,8 +2,8 @@
   <div class="sidebar-wrap">
     <h3>文章分类</h3>
     <ul>
-      <li v-for="(menu,index) in menuList" :key="index">
-        <nuxt-link :to="{ path: `/article/${menu.name}` }">{{ menu.name }}</nuxt-link>
+      <li v-for="(brand,index) in brandList" :key="index">
+        <nuxt-link :to="{ path: `/article/${brand.brand_name}` }">{{ brand.brand_name }}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -17,11 +17,11 @@
       },
       computed: {
         ...mapState({
-          menuList: state => state.menu.dataList,
+          brandList: state => state.brand.dataList,
         })
       },
       methods: {
-        ...mapActions('menu',['search']),
+        ...mapActions('brand',['search']),
       },
       created(){
         this.search();

@@ -1,20 +1,22 @@
 <template>
-  <div>
-    <header>
-      <div class="motto pr w">
-        <p>If you don't walk out, you will think that this is the whole world</p>
-        <el-button type="primary" plain size="small" class="admin-btn" @click="logout">退出</el-button>
+  <no-ssr placeholder="Loading...">
+    <div>
+      <header>
+        <div class="motto pr w">
+          <p>If you don't walk out, you will think that this is the whole world</p>
+          <el-button type="primary" plain size="small" class="admin-btn" @click="logout">退出</el-button>
+        </div>
+      </header>
+
+      <div class="main-content">
+        <nuxt/>
       </div>
-    </header>
 
-    <div class="main-content">
-      <nuxt/>
+      <footer>
+        <p class="copyright">Copyright © 2018</p>
+      </footer>
     </div>
-
-    <footer>
-      <p class="copyright">Copyright © 2018</p>
-    </footer>
-  </div>
+  </no-ssr>
 </template>
 
 <script>

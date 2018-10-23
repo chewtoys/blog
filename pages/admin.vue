@@ -1,16 +1,16 @@
 <template>
   <div class="admin-wrap">
-    <nav>
-      <ul class="sidebar">
-        <nuxt-link :to="{ path: '/admin' }" tag="li">关于我</nuxt-link>
-        <nuxt-link :to="{ path: '/admin/mood' }" tag="li">胡言乱语</nuxt-link>
-        <nuxt-link :to="{ path: '/admin/menu' }" tag="li">文章分类</nuxt-link>
-        <nuxt-link :to="{ path: '/admin/article' }" tag="li">文章列表</nuxt-link>
-      </ul>
-    </nav>
-    <div class="admin-content">
-      <nuxt-child></nuxt-child>
-    </div>
+      <nav>
+        <ul class="sidebar">
+          <nuxt-link :to="{ path: '/admin' }" tag="li">关于我</nuxt-link>
+          <nuxt-link :to="{ path: '/admin/mood' }" tag="li">胡言乱语</nuxt-link>
+          <nuxt-link :to="{ path: '/admin/brand' }" tag="li">文章分类</nuxt-link>
+          <nuxt-link :to="{ path: '/admin/article' }" tag="li">文章列表</nuxt-link>
+        </ul>
+      </nav>
+      <div class="admin-content">
+        <nuxt-child></nuxt-child>
+      </div>
   </div>
 </template>
 
