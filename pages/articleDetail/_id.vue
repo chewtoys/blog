@@ -16,6 +16,15 @@
   import articleCategory from '~/components/article-category.vue'
   import { getArticleDetail } from '../../lib/api'
   export default {
+    head () {
+      return {
+        title: this.articleDetail.title,
+        meta: [
+          { hid: 'keywords', name: 'keywords', content: '养猪大户,养猪大户博客,前端博客,养猪大户技术文章,' + this.articleDetail.brand_name },
+          { hid: 'description', name: 'description', content: '养猪大户技术文章详情--' + this.articleDetail.title }
+        ]
+      }
+    },
     components: {
       'article-category': articleCategory,
     },

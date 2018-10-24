@@ -48,7 +48,7 @@
     head () {
       return {
         meta: [
-          { hid: 'description', name: 'description', content: '亲爱的混蛋的心路历程' }
+          { hid: 'description', name: 'description', content: '养猪大户的心路历程' }
         ]
       }
     },

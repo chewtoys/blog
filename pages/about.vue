@@ -13,12 +13,13 @@
   export default {
     head () {
       return {
+        title: '关于养猪大户',
         meta: [
-          { hid: 'description', name: 'description', content: '关于亲爱的混蛋,亲爱的混蛋简介' }
+          { hid: 'description', name: 'description', content: '关于养猪大户,养猪大户简介' }
         ]
       }
     },
-    async asyncData({isClient,isServer,isDev}){
+    async asyncData(){
       let { obj } = await aboutInfo();
       return { info: obj };
     },

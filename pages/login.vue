@@ -33,8 +33,9 @@
     layout: 'login',
     head () {
       return {
+        title: '养猪大户博客管理后台',
         meta: [
-          { hid: 'description', name: 'description', content: '亲爱的混蛋博客管理后台' }
+          { hid: 'description', name: 'description', content: '养猪大户博客后台管理登录页' }
         ]
       }
     },

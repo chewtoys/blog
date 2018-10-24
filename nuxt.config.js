@@ -3,13 +3,13 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: '亲爱的混蛋',
+    title: '养猪大户',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'author', name: 'author', content: '亲爱的混蛋' },
-      { hid: 'keywords', name: 'keywords', content: '亲爱的混蛋,个人博客,前端博客,Nuxt,vue服务端渲染,ssr服务端渲染,srr单页面' },
-      { hid: 'description', name: 'description', content: '亲爱的混蛋个人博客,基于Nuxt+axios+mysql+nginx技术栈' }
+      { hid: 'author', name: 'author', content: '养猪大户' },
+      { hid: 'keywords', name: 'keywords', content: '养猪大户,个人博客,前端博客,Nuxt,vue服务端渲染,ssr服务端渲染,srr单页面' },
+      { hid: 'description', name: 'description', content: '养猪大户个人博客,基于Nuxt+axios+mysql+nginx技术栈' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
