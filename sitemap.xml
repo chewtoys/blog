@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>http://www.lzzj.online/</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/mood</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/about</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/articleDetail/31</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/articleDetail/32</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/articleDetail/33</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/articleDetail/34</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/Javascript</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/Vue</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/Nuxt</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/Angular</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/ReactNative</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/Node</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lzzj.online/article/Html&amp;CSS</loc>
+  <lastmod>2018-10-29T07:41:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

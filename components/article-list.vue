@@ -5,7 +5,7 @@
       <li v-for="(item,index) in articleList" :key="index">
         <figure>
           <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">
-            <img :src="baseImgPath + item.brand_name + '.jpg'" alt="">
+            <img :src="baseImgPath + item.brand + '.jpg'" alt="">
           </nuxt-link>
         </figure>
         <div class="news-inner">
@@ -17,7 +17,7 @@
             <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">阅读全文</nuxt-link>
           </p>
           <p class="extro-info">
-            <span class="brand">{{ item.brand_name }}</span>
+            <span class="brand">{{ item.brand }}</span>
             <span class="create_time">{{ item.create_time | formatDate }}</span>
             <!--<span class="viewnum">浏览({{ item.viewnum }})</span>-->
           </p>

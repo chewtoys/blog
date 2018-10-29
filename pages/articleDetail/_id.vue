@@ -20,8 +20,8 @@
       return {
         title: this.articleDetail.title,
         meta: [
-          { hid: 'keywords', name: 'keywords', content: '养猪大户,养猪大户博客,前端博客,养猪大户技术文章,' + this.articleDetail.brand_name },
-          { hid: 'description', name: 'description', content: '养猪大户技术文章详情--' + this.articleDetail.title }
+          { hid: 'keywords', name: 'keywords', content: '前端大户,前端大户博客,前端博客,前端大户技术文章,' + this.articleDetail.brand },
+          { hid: 'description', name: 'description', content: '前端大户技术文章详情--' + this.articleDetail.title }
         ]
       }
     },

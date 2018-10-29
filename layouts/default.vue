@@ -29,7 +29,7 @@
     </div>
 
     <footer>
-      <p class="copyright">Copyright © 2018 - 亲爱的混蛋</p>
+      <p class="copyright">Copyright © 2018 - 养猪大户 <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">鄂ICP备17003180号-1</a></p>
     </footer>
   </div>
 </template>
@@ -79,16 +79,19 @@ html {
         li {
           height: 60px;
           line-height: 60px;
-          padding: 0 15px;
           cursor: pointer;
           color: #fff;
           a {
             color: inherit;
             text-decoration: none;
             display: block;
+            padding: 0 15px;
           }
           &:hover {
             background: #f90;
+          }
+          &:last-child {
+            padding: 0 15px;
           }
         }
       }
@@ -104,6 +107,10 @@ html {
     background: #000;
     .copyright {
       color: #fff;
+      a {
+        color: #666;
+        text-decoration: none;
+      }
     }
   }
 }

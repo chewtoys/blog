@@ -13,9 +13,9 @@
   export default {
     head () {
       return {
-        title: '关于养猪大户',
+        title: '关于前端大户',
         meta: [
-          { hid: 'description', name: 'description', content: '关于养猪大户,养猪大户简介' }
+          { hid: 'description', name: 'description', content: '关于前端大户,前端大户简介' }
         ]
       }
     },

@@ -3,7 +3,7 @@
     <h3>文章分类</h3>
     <ul>
       <li v-for="(brand,index) in brandList" :key="index">
-        <nuxt-link :to="{ path: `/article/${brand.brand_name}` }">{{ brand.brand_name }}</nuxt-link>
+        <nuxt-link :to="{ path: `/article/${brand.name}` }">{{ brand.name }}</nuxt-link>
       </li>
     </ul>
   </div>

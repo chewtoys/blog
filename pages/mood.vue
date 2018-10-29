@@ -45,13 +45,6 @@
         return val ? val.substring(0,19) : '';
       }
     },
-    head () {
-      return {
-        meta: [
-          { hid: 'description', name: 'description', content: '养猪大户的心路历程' }
-        ]
-      }
-    },
   }
 </script>
 
