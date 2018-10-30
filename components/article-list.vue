@@ -104,6 +104,7 @@
   .article-list-wrap {
     flex: 1;
     padding: 20px 0 80px;
+    order: 1;
     .articles {
       li {
         @include centerBox();

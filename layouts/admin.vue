@@ -13,7 +13,7 @@
       </div>
 
       <footer>
-        <p class="copyright">Copyright © 2018</p>
+        <p class="copyright">Copyright © 2018 - 前端大户 <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">鄂ICP备17003180号-1</a></p>
       </footer>
     </div>
   </no-ssr>
@@ -73,6 +73,10 @@
       background: #000;
       .copyright {
         color: #fff;
+        a {
+          color: #666;
+          text-decoration: none;
+        }
       }
     }
   }

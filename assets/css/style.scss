@@ -15,3 +15,127 @@
   width: 300px;
 }
 
+// 移动端
+@media (max-width: 768px) {
+  .w {
+    width: 100% !important;
+  }
+  header {
+    .motto {
+      img {
+        height: 50px;
+      }
+      .pa {
+        display: none;
+      }
+      .i-menu {
+        display: block !important;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        i {
+          top: 25px;
+          opacity: 1;
+        }
+        i,
+        &:before,
+        &:after {
+          width: 22px;
+          height: 1px;
+          position: absolute;
+          left: 14px;
+          background-color: #999;
+          transition: all .2s cubic-bezier(.4,.01,.165,.99) .3s;
+        }
+        &:before {
+          content: '';
+          top: 17px;
+        }
+        &:after {
+          content: '';
+          bottom: 16px;
+        }
+      }
+    }
+    nav#sidebar {
+      width: 250px;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: #202020 !important;
+      overflow: auto;
+      z-index: 1;
+      transform: translate3D(-250px,0,0);
+      transition: transform .2s cubic-bezier(.4,.01,.165,.99),-webkit-transform .2s cubic-bezier(.4,.01,.165,.99);
+      -webkit-overflow-scrolling: touch;
+      ul {
+        display: block;
+        li {
+          border-bottom: 1px dashed #ccc;
+        }
+      }
+    }
+  }
+  .main-content {
+    padding: 0 10px;
+    min-height: 650px !important;
+    .article-wrap,
+    .article-cate-wrap,
+    .article-detail-wrap {
+      display: block;
+    }
+    // sidebar
+    .sidebar-wrap {
+      width: 100%;
+      margin: 10px 0;
+      padding: 0 10px;
+      box-shadow: none;
+      background: none;
+      h3 {
+        display: none;
+      }
+      ul {
+        li {
+          display: inline-block;
+          border: 1px solid #eee;
+          border-radius: 5px;
+          margin: 3px 5px;
+          background: #fff;
+          text-align: center;
+          padding: 0;
+          a {
+            text-indent: 0;
+            padding: 5px 8px;
+          }
+        }
+      }
+    }
+    // article-list-component
+    .article-list-wrap {
+      .articles {
+        li {
+          display: block;
+          figure {
+            display: none;
+          }
+        }
+      }
+    }
+    // mood-list
+    .mood-wrap {
+      .moods li {
+        display: block;
+        padding: 10px;
+        .create_time {
+          margin-left: calc(100% - 150px);
+        }
+      }
+    }
+  }
+  footer .copyright {
+    font-size: 12px;
+  }
+}

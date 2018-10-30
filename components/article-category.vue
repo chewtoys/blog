@@ -36,6 +36,7 @@
     background: #FAFCFD;
     border-radius: 5px;
     box-shadow: 1px 1px 2px #A7A8AD;
+    order: 2;
     h3 {
       height: 30px;
       line-height: 30px;

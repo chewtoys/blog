@@ -1,7 +1,7 @@
 <template>
   <div class="article-wrap w">
-    <article-list page-subject="技术分享"></article-list>
     <article-category></article-category>
+    <article-list page-subject="技术分享"></article-list>
   </div>
 </template>
 
