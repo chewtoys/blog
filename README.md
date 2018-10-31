@@ -19,5 +19,11 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## 博客搭建进度
+== 已完成：
+   https、seo、移动端自适应
+== 开发中：
+   第三方登录
+   
+
 
