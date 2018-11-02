@@ -5,6 +5,6 @@
 ######   个人生活模块
 > 项目目前已开源，供更多和我一样的前端初学者学习交流。感谢关注，欢迎star！  
 
-> 其它： 服务端koa2源码暂未开源，有需要的可以去我博客[https://www.lzzj.online](https://www.lzzj.online)留言评论区留下邮箱，我会私下发送的。
+> 其它： 服务端koa2源码暂未开源，有需要的可以去我博客[https://www.lzzj.online](https://www.lzzj.online)留言评论区留下邮箱，我会私下提供。
 
 
