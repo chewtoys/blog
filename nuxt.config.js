@@ -10,7 +10,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    // script: [{ type: 'text/javascript', charset: 'utf-8', src: 'http://open.51094.com/user/myscript/15bd82635166e1.html'}],
+    // __dangerouslyDisableSanitizers: ['script'],
   },
   css: [
     '~assets/css/reset.scss',

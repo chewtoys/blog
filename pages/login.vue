@@ -1,5 +1,8 @@
 <template>
   <div class="login-wrap">
+    <div class="login-method">
+
+    </div>
     <el-form ref="form" :rules="rules" :model="form">
       <el-form-item prop="username" class="w300">
         <el-input type="text" clearable v-model="form.username">
@@ -18,6 +21,7 @@
       </el-form-item>
 
       <el-form-item class="login-back">
+        <img src="~assets/img/github.png" width="30" alt="github账号登录" title="github账号登录" @click="gitLogin">
         <nuxt-link to="/">前往首页</nuxt-link>
       </el-form-item>
     </el-form>
@@ -26,9 +30,9 @@
 </template>
 
 <script>
-  import { login } from "../lib/api";
+  import { mapMutations } from 'vuex';
+  import { login,githubLoginInfo } from "../lib/api";
   import { canvas } from "../lib/canvas";
-
   export default {
     layout: 'login',
     head () {
@@ -52,6 +56,7 @@
       }
     },
     methods: {
+      ...mapMutations('common',['setGithubUserInfo']),
       submit(){
         this.$refs.form.validate(async (valid) => {
           if (valid) {
@@ -66,10 +71,29 @@
           }
         });
       },
+      gitLogin(){
+        window.location.href = 'https://github.com/login/oauth/authorize?client_id=179734b4992801028c8d&redirect_uri=https://www.lzzj.online/login'
+      },
+      async getGithubUserInfo(code){
+        let { obj } = await githubLoginInfo({code: code});
+        this.setGithubUserInfo(obj);
+        sessionStorage.setItem('github', obj);
+        this.$notify.success({title: '操作提示', message: '登录成功'});
+        this.$router.push('/');
+      },
+      getParams(name){
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+          return unescape(r[2]);
+        return null;
+      }
     },
     mounted(){
+      let code = this.getParams('code') || '';  // 获取url里面的code
+      code && this.getGithubUserInfo(code);
       canvas();
-    }
+    },
   }
 </script>
 
@@ -86,6 +110,10 @@
     text-align: center;
     a {
       color: #409EFF;
+    }
+    img {
+      float: left;
+      cursor: pointer;
     }
   }
   canvas {

@@ -1,0 +1,131 @@
+<template>
+  <div class="message-wrap w">
+    <h2 class="page-subject">留言板</h2>
+    <el-form ref="form" :model="form" :rules="rules">
+      <el-form-item prop="content">
+        <el-input type="textarea" v-model="form.content" placeholder="登录后才可以发表留言哦！"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" size="small" @click="submit" :disabled="!githubUser.login || !githubUser.avatar_url">发表留言</el-button>
+      </el-form-item>
+    </el-form>
+    <div class="message-history">
+      <h3>留言({{total}})</h3>
+      <ul v-if="total">
+        <li v-for="(item,index) in dataList" :key="index">
+          <img :src="item.avatar_url" width="50">
+          <div class="message-inner">
+            <p class="message-account"><span>{{item.account}}</span>   第{{item.id}}楼</p>
+            <p class="message-content">{{item.content}}</p>
+            <p class="message-time">{{item.create_time | formatDate}}</p>
+          </div>
+        </li>
+      </ul>
+      <p class="no-message" v-else>暂无留言，快来抢占沙发</p>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { addMessage,messageList } from '../lib/api'
+  import { mapState } from 'vuex'
+  export default {
+    async asyncData(){
+      let res = await messageList();
+      return {
+        dataList: res.rows,
+        total: res.total
+      };
+    },
+    data() {
+      return {
+        form: {
+          content: ''
+        },
+        rules: {
+          content: [{ required: true, message: '请输入留言', trigger: 'blur' },],
+        }
+      }
+    },
+    computed: {
+      ...mapState({
+        githubUser: state => state.common.githubUser,
+      })
+    },
+    methods: {
+      submit() {
+        this.$refs.form.validate(async (valid) => {
+          if (valid) {
+            let data = {
+              content: this.form.content,
+              account: this.githubUser.login,
+              avatar_url: this.githubUser.avatar_url
+            };
+            let res = await addMessage(data);
+            res.flag && this.$notify.success({title: '操作提示', message: '发表成功'});
+            let resp = await messageList();
+            this.dataList = resp.rows;
+            this.total = resp.total;
+          }
+        });
+      },
+    },
+    filters: {
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
+    },
+  }
+</script>
+
+<style lang="scss">
+.message-wrap {
+  padding: 20px 0 80px;
+  .el-form {
+    margin: 20px 0;
+    .el-form-item:first-child {
+      margin-bottom: 15px;
+    }
+  }
+  .message-history {
+    h3 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    ul {
+      border-top: 2px solid #CCE7F1;
+      li {
+        padding: 15px 0;
+        border-bottom: 1px solid #CCE7F1;
+        @include centerBox(flex-start,flex-start);
+        img {
+          border-radius: 10px;
+        }
+        .message-inner {
+          margin-left: 20px;
+          .message-account {
+            color: #9B9B9B;
+            span {
+              color: #f90;
+              font-size: 16px;
+            }
+          }
+          .message-content {
+            padding: 20px 0;
+            line-height: 20px;
+          }
+          .message-time {
+            color: #9B9B9B;
+          }
+        }
+      }
+    }
+    .no-message {
+      color: red;
+      margin: 20px;
+      text-align: center;
+    }
+  }
+}
+</style>

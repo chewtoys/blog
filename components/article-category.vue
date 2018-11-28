@@ -2,7 +2,7 @@
   <div class="sidebar-wrap">
     <h3>文章分类</h3>
     <ul>
-      <li v-for="(brand,index) in brandList" :key="index">
+      <li v-for="(brand,index) in brandList" :key="index" :class="{ on: $route.path.includes(brand.name) }">
         <nuxt-link :to="{ path: `/article/${brand.name}` }">{{ brand.name }}</nuxt-link>
       </li>
     </ul>
@@ -12,9 +12,6 @@
 <script>
   import { mapState,mapActions } from 'vuex'
     export default {
-      data() {
-          return {}
-      },
       computed: {
         ...mapState({
           brandList: state => state.brand.dataList,
@@ -65,6 +62,12 @@
           }
           &:hover {
             color: #db6d4c;
+          }
+        }
+        &.on {
+          background: #f90 !important;
+          a {
+            color: #fff;
           }
         }
       }

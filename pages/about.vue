@@ -1,7 +1,6 @@
 <template>
   <div class="about-wrap w">
     <h2 class="page-subject">关于我</h2>
-    <h3>爱好: {{ info.hobby }}</h3>
     <div class="quill-editor ql-container">
       <div class="ql-editor about-text" v-html="info.introduction"></div>
     </div>
@@ -16,6 +15,9 @@
         title: '关于前端大户',
         meta: [
           { hid: 'description', name: 'description', content: '关于前端大户,前端大户简介' }
+        ],
+        script: [
+          { src: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js' }
         ]
       }
     },
@@ -35,6 +37,7 @@
   .about-text {
     padding: 20px;
     p {
+      text-indent: 2em;
       line-height: 30px;
     }
   }

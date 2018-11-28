@@ -25,7 +25,7 @@
       img {
         height: 50px;
       }
-      .pa {
+      .sub-title {
         display: none;
       }
       .i-menu {
@@ -56,6 +56,19 @@
         &:after {
           content: '';
           bottom: 16px;
+        }
+      }
+      .user-info {
+        top: 12px !important;
+        right: 12px !important;
+        img {
+          width: 30px !important;
+          height: 30px !important;
+          margin-right: 10px;
+          vertical-align: text-bottom;
+        }
+        br {
+          display: none;
         }
       }
     }
@@ -120,6 +133,22 @@
           display: block;
           figure {
             display: none;
+          }
+          .news-inner {
+            .extro-info {
+              .brand {
+                background-image: url("~assets/img/brand.png");
+              }
+              .create_time {
+                background-image: url("~assets/img/time.png");
+              }
+              .viewnum {
+                background-image: url("~assets/img/view.png");
+                background-position: center left;
+                background-size: 30px;
+                padding-left: 35px;
+              }
+            }
           }
         }
       }

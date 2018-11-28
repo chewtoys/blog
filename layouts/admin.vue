@@ -3,7 +3,7 @@
     <div>
       <header>
         <div class="motto pr w">
-          <p>If you don't walk out, you will think that this is the whole world</p>
+          <p class="sub-title">If you don't walk out, you will think that this is the whole world</p>
           <el-button type="primary" plain size="small" class="admin-btn" @click="logout">退出</el-button>
         </div>
       </header>
@@ -53,7 +53,7 @@
       font-size: 0;
       .motto {
         font-size: 20px;
-        p {
+        .sub-title {
           padding: 30px 30px 20px 0;
         }
         .admin-btn {

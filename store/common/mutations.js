@@ -1,15 +1,5 @@
 export default {
-  setSearchData(state, data) {
-    state.dataList = data.rows;
-    state.total = data.total;
+  setGithubUserInfo(state, data) {
+    state.githubUser = Object.assign(state.githubUser,data);
   },
-
-  setPagination(state, pageNo){
-    state.pageNo = pageNo;
-  },
-
-  toggleDialog(state) {
-    state.dialogForm = { content: ''};
-    state.dialogVisible = !state.dialogVisible;
-  }
 }

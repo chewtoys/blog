@@ -33,7 +33,7 @@
     methods: {
       async loadMore(){
         if(this.pageNo*this.pageSize >= this.total ) {
-          return this.loadMsg = '我是有底限的!!!'
+          return this.loadMsg = '我是有底限的'
         }
         this.pageNo += 1;
         let res = await moodList({ pageNo: this.pageNo,pageSize: this.pageSize });

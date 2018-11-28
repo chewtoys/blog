@@ -11,7 +11,7 @@
 
     <el-table :data="tableData" border>
       <el-table-column type="index"></el-table-column>
-      <el-table-column prop="brand_name" label="名称"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="disable" label="状态">
         <template slot-scope="{ row }">
           <i class="el-icon-circle-check green f16" v-if="row.disable"></i>
