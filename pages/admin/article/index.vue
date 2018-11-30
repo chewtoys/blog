@@ -34,12 +34,13 @@
     </el-table>
 
     <el-pagination
-      @current-change="handleCurrentChange"
       :current-page="pageNo"
       :page-size="pageSize"
+      :total="total"
       background
       layout="total, prev, pager, next"
-      :total="total">
+      @current-change="handleCurrentChange"
+    >
     </el-pagination>
   </div>
 </template>
@@ -49,6 +50,11 @@
   export default {
     async fetch ({ store }) {
       await store.dispatch('article/search');
+    },
+    filters: {
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
     },
     computed: {
       ...mapState({
@@ -68,11 +74,6 @@
       addArticle(){
         this.$router.push("/admin/article/0"); // 0 表示新建
       },
-    },
-    filters: {
-      formatDate(val){
-        return val ? val.substring(0,19) : '';
-      }
     }
   }
 </script>

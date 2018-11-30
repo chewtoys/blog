@@ -1,10 +1,10 @@
 <template>
-  <div class="mood-wrap w">
+  <div class="mood-wrap">
     <h2 class="page-subject">胡言乱语</h2>
     <ul class="moods">
       <li v-for="(item,index) in dataList" :key="index">
         <p class="moods-extract">{{ item.content }}</p>
-        <p class="create_time">{{ item.create_time | formatDate  }}</p>
+        <p class="create_time">{{ item.create_time | formatDate }}</p>
       </li>
     </ul>
     <div class="loadmore">
@@ -23,6 +23,11 @@
         total: res.total
       };
     },
+    filters: {
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
+    },
     data(){
       return {
         pageNo: 1,
@@ -39,12 +44,7 @@
         let res = await moodList({ pageNo: this.pageNo,pageSize: this.pageSize });
         this.dataList = this.dataList.concat(res.rows);
       }
-    },
-    filters: {
-      formatDate(val){
-        return val ? val.substring(0,19) : '';
-      }
-    },
+    }
   }
 </script>
 

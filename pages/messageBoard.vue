@@ -1,27 +1,27 @@
 <template>
-  <div class="message-wrap w">
+  <div class="message-wrap">
     <h2 class="page-subject">留言板</h2>
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item prop="content">
-        <el-input type="textarea" v-model="form.content" placeholder="登录后才可以发表留言哦！"></el-input>
+        <el-input v-model="form.content" type="textarea" placeholder="登录后才可以发表留言哦！"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="small" @click="submit" :disabled="!githubUser.login || !githubUser.avatar_url">发表留言</el-button>
+        <el-button :disabled="!githubUser.login || !githubUser.avatar_url" type="primary" size="small" @click="submit">发表留言</el-button>
       </el-form-item>
     </el-form>
     <div class="message-history">
-      <h3>留言({{total}})</h3>
+      <h3>留言({{ total }})</h3>
       <ul v-if="total">
         <li v-for="(item,index) in dataList" :key="index">
           <img :src="item.avatar_url" width="50">
           <div class="message-inner">
-            <p class="message-account"><span>{{item.account}}</span>   第{{item.id}}楼</p>
-            <p class="message-content">{{item.content}}</p>
-            <p class="message-time">{{item.create_time | formatDate}}</p>
+            <p class="message-account"><span>{{ item.account }}</span>   第{{ item.id }}楼</p>
+            <p class="message-content">{{ item.content }}</p>
+            <p class="message-time">{{ item.create_time | formatDate }}</p>
           </div>
         </li>
       </ul>
-      <p class="no-message" v-else>暂无留言，快来抢占沙发</p>
+      <p v-else class="no-message">暂无留言，快来抢占沙发</p>
     </div>
   </div>
 </template>
@@ -36,6 +36,11 @@
         dataList: res.rows,
         total: res.total
       };
+    },
+    filters: {
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
     },
     data() {
       return {
@@ -69,12 +74,7 @@
           }
         });
       },
-    },
-    filters: {
-      formatDate(val){
-        return val ? val.substring(0,19) : '';
-      }
-    },
+    }
   }
 </script>
 

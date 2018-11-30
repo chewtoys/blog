@@ -21,12 +21,6 @@
 
 <script>
   export default {
-    methods: {
-      logout(){
-        sessionStorage.removeItem('token');
-        this.$router.push('/');
-      }
-    },
     created(){
       let isClient = process.client;
       if(isClient){
@@ -34,6 +28,12 @@
         if (!token) {
           this.$router.push('/login');
         }
+      }
+    },
+    methods: {
+      logout(){
+        sessionStorage.removeItem('token');
+        this.$router.push('/');
       }
     }
   }

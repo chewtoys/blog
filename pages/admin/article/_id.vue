@@ -9,7 +9,7 @@
     <div class="article-detail">
       <el-form ref="form" :rules="rules" :model="articleForm" label-width="60px">
         <el-form-item label="标题" prop="title" class="w300">
-          <el-input type="text" v-model="articleForm.title"></el-input>
+          <el-input v-model="articleForm.title" type="text"></el-input>
         </el-form-item>
 
         <el-form-item label="标签" prop="brand" class="w300">

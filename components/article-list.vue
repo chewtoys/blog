@@ -24,10 +24,10 @@
         </div>
       </li>
     </ul>
-    <div class="loadmore" v-if="pageSubject !== '最新文章' && articleList.length">
+    <div v-if="pageSubject !== '最新文章' && articleList.length" class="loadmore">
       <el-button type="info" size="small" plain @click="loadMore">{{ loadMsg }}</el-button>
     </div>
-    <div class="no-data" v-if="!articleList.length">暂无数据</div>
+    <div v-if="!articleList.length" class="no-data">暂无数据</div>
   </div>
 </template>
 
@@ -36,10 +36,21 @@
   import { baseImgPath } from "../lib/env";
 
   export default {
+    filters: {
+      abstractFormat(val){
+        return val.replace(/<[^>]+>/g,'').substring(0,200);
+      },
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
+    },
     props: {
       dataList: {
         type: Array,
-        required: false
+        required: false,
+        default() {
+          return [];
+        }
       },
       pageSubject: {
         type: String,
@@ -55,6 +66,13 @@
         loadMsg: '加载更多',
         brand: '',
         baseImgPath: baseImgPath,
+      }
+    },
+    created(){
+      if(this.pageSubject === '最新文章'){
+        this.articleList = this.dataList;
+      }else{
+        this.search();
       }
     },
     methods: {
@@ -80,21 +98,6 @@
         };
         let res = await getArticleList(data);
         this.articleList = this.articleList.concat(res.rows);
-      }
-    },
-    created(){
-      if(this.pageSubject === '最新文章'){
-        this.articleList = this.dataList;
-      }else{
-         this.search();
-      }
-    },
-    filters: {
-      abstractFormat(val){
-        return val.replace(/<[^>]+>/g,'').substring(0,200);
-      },
-      formatDate(val){
-        return val ? val.substring(0,19) : '';
       }
     }
   }

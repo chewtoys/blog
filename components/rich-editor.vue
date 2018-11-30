@@ -1,25 +1,26 @@
 <template>
   <div class="rich-editor">
     <el-upload
-      class="uploader-hide"
       :action="serverUrl"
-      name="file"
       :headers="header"
       :show-file-list="false"
       :on-success="uploadSuccess"
       :on-error="uploadError"
-      :before-upload="beforeUpload">
+      :before-upload="beforeUpload"
+      class="uploader-hide"
+      name="file">
     </el-upload>
     <el-row v-loading="quillUpdateImg">
-      <div class="quill-editor"
-           sytle="min-height: 500px;"
-           :content="richText"
-           ref="myQuillEditor"
-           @change="onEditorChange($event)"
-           @blur="onEditorBlur($event)"
-           @focus="onEditorFocus($event)"
-           @ready="onEditorReady($event)"
-           v-quill:myQuillEditor="editorOption"
+      <div
+        v-quill:myQuillEditor="editorOption"
+        ref="myQuillEditor"
+        :content="richText"
+        class="quill-editor"
+        sytle="min-height: 500px;"
+        @change="onEditorChange($event)"
+        @blur="onEditorBlur($event)"
+        @focus="onEditorFocus($event)"
+        @ready="onEditorReady($event)"
       >
       </div>
     </el-row>
@@ -75,6 +76,9 @@
         },
       }
     },
+    mounted(){
+      this.richText = this.value;
+    },
     methods: {
       beforeUpload(res, file) {
         // 显示loading动画
@@ -110,9 +114,6 @@
       onEditorBlur(editor) {},
       onEditorFocus(editor) {},
       onEditorReady(editor) {},
-    },
-    mounted(){
-      this.richText = this.value;
     }
   }
 </script>

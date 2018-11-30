@@ -1,5 +1,5 @@
 <template>
-  <div class="about-wrap w">
+  <div class="about-wrap">
     <h2 class="page-subject">关于我</h2>
     <div class="quill-editor ql-container">
       <div class="ql-editor about-text" v-html="info.introduction"></div>

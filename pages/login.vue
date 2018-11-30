@@ -5,19 +5,19 @@
     </div>
     <el-form ref="form" :rules="rules" :model="form">
       <el-form-item prop="username" class="w300">
-        <el-input type="text" clearable v-model="form.username">
+        <el-input v-model="form.username" type="text" clearable>
           <template slot="prepend">用户名</template>
         </el-input>
       </el-form-item>
 
       <el-form-item prop="password" class="w300">
-        <el-input type="text" clearable v-model="form.password" @keypress.enter.native="submit">
+        <el-input v-model="form.password" type="text" clearable @keypress.enter.native="submit">
           <template slot="prepend">密&nbsp;&nbsp;&nbsp;码</template>
         </el-input>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" size="middle" @click="submit" class="w300">登  录</el-button>
+        <el-button type="primary" size="middle" class="w300" @click="submit">登  录</el-button>
       </el-form-item>
 
       <el-form-item class="login-back">
@@ -55,6 +55,11 @@
         }
       }
     },
+    mounted(){
+      let code = this.getParams('code') || '';  // 获取url里面的code
+      code && this.getGithubUserInfo(code);
+      canvas();
+    },
     methods: {
       ...mapMutations('common',['setGithubUserInfo']),
       submit(){
@@ -88,12 +93,7 @@
           return unescape(r[2]);
         return null;
       }
-    },
-    mounted(){
-      let code = this.getParams('code') || '';  // 获取url里面的code
-      code && this.getGithubUserInfo(code);
-      canvas();
-    },
+    }
   }
 </script>
 

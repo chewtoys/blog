@@ -1,5 +1,5 @@
 <template>
-  <section class="w home">
+  <section class="home">
     <div class="home-l flex1">
       <article-list :data-list="dataList" page-subject="最新文章"></article-list>
     </div>

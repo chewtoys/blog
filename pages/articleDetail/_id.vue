@@ -1,5 +1,5 @@
 <template>
-  <div class="article-detail-wrap w">
+  <div class="article-detail-wrap">
     <article-category></article-category>
     <div class="article-detail">
       <h2 class="page-subject">博客正文</h2>

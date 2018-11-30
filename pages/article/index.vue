@@ -1,5 +1,5 @@
 <template>
-  <div class="article-wrap w">
+  <div class="article-wrap">
     <article-category></article-category>
     <article-list page-subject="技术分享"></article-list>
   </div>

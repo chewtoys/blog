@@ -14,8 +14,8 @@
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="disable" label="状态">
         <template slot-scope="{ row }">
-          <i class="el-icon-circle-check green f16" v-if="row.disable"></i>
-          <i class="el-icon-circle-close red f16" v-else></i>
+          <i v-if="row.disable" class="el-icon-circle-check green f16"></i>
+          <i v-else class="el-icon-circle-close red f16"></i>
         </template>
       </el-table-column>
       <el-table-column prop="create_time" label="发布日期">
@@ -29,10 +29,10 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="dialogForm.id ? '修改目录':'添加目录'" :visible.sync="dialogVisible" :modal="false" width="480px" :before-close="toggleDialog">
+    <el-dialog :title="dialogForm.id ? '修改目录':'添加目录'" :visible.sync="dialogVisible" :before-close="toggleDialog" :modal="false" width="480px">
       <el-form ref="form" :rules="rules" :model="dialogForm">
         <el-form-item prop="brand_name" label="目录名称">
-          <el-input type="text" v-model="dialogForm.brand_name"></el-input>
+          <el-input v-model="dialogForm.brand_name" type="text"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -48,6 +48,11 @@
   export default {
     async fetch ({ store, params }) {
       await store.dispatch('brand/search');
+    },
+    filters: {
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
     },
     data(){
       return{
@@ -79,11 +84,6 @@
       editItem(row){
         this.toggleDialog();
         this.setDialogForm(row);
-      }
-    },
-    filters: {
-      formatDate(val){
-        return val ? val.substring(0,19) : '';
       }
     }
   }

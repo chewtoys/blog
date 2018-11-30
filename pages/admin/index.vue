@@ -11,19 +11,19 @@
 
     <el-form ref="form" :rules="rules" :model="info" label-width="70px">
       <el-form-item label="昵称" prop="nickname" class="w300">
-        <el-input type="text" v-model="info.nickname"></el-input>
+        <el-input v-model="info.nickname" type="text"></el-input>
       </el-form-item>
 
       <el-form-item label="年龄" prop="age" class="w300">
-        <el-input type="number" v-model="info.age"></el-input>
+        <el-input v-model="info.age" type="number"></el-input>
       </el-form-item>
 
       <el-form-item label="出生地" prop="birthplace" class="w300">
-        <el-input type="text" v-model="info.birthplace"></el-input>
+        <el-input v-model="info.birthplace" type="text"></el-input>
       </el-form-item>
 
       <el-form-item label="爱好" prop="hobby" class="w300">
-        <el-input type="text" v-model="info.hobby"></el-input>
+        <el-input v-model="info.hobby" type="text"></el-input>
       </el-form-item>
 
       <el-form-item label="简介" prop="introduction">

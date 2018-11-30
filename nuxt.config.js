@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'spa',
   head: {
     title: '前端大户',
     meta: [

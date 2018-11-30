@@ -23,19 +23,20 @@
     </el-table>
 
     <el-pagination
-      @current-change="handlePageChange"
       :current-page="pageNo"
       :page-size="pageSize"
+      :total="total"
       background
       layout="total, prev, pager, next"
-      :total="total">
+      @current-change="handlePageChange"
+    >
     </el-pagination>
 
-    <el-dialog title="发表心情" :visible.sync="dialogVisible" :modal="false" width="480px" :before-close="toggleDialog">
+    <el-dialog :visible.sync="dialogVisible" :modal="false" :before-close="toggleDialog" title="发表心情" width="480px">
       <el-form ref="form" :rules="rules" :model="dialogForm">
         <el-form-item prop="content">
           <div>记录点滴心情:</div>
-          <el-input type="textarea" :rows="3" v-model="dialogForm.content"></el-input>
+          <el-input v-model="dialogForm.content" :rows="3" type="textarea"></el-input>
           <div class="tip ar">
             <span v-if="dialogForm.content.length <= 120">还可输入{{ 120 - dialogForm.content.length }}个字</span>
             <span v-else>输入超过{{ dialogForm.content.length - 120 }}个字</span>
@@ -53,6 +54,11 @@
 <script>
   import { mapState,mapActions,mapMutations } from "vuex"
   export default {
+    filters: {
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
+    },
     data() {
       return {
         rules: {
@@ -89,11 +95,6 @@
             this.addItem();
           }
         });
-      }
-    },
-    filters: {
-      formatDate(val){
-        return val ? val.substring(0,19) : '';
       }
     }
   }

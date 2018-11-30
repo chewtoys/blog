@@ -17,11 +17,11 @@
           brandList: state => state.brand.dataList,
         })
       },
-      methods: {
-        ...mapActions('brand',['search']),
-      },
       created(){
         this.search();
+      },
+      methods: {
+        ...mapActions('brand',['search']),
       },
     }
 </script>

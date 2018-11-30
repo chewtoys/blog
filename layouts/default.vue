@@ -1,29 +1,8 @@
 <template>
   <div>
-    <header>
-      <div class="motto pr">
-        <p class="sub-title pa">If you don't walk out, you will think that this is the whole world</p>
-        <img src="~assets/img/header-bg.jpg" width="100%">
-        <span class="i-menu" @click="toggleSidebar"><i></i></span>
-        <p class="user-info pa" v-if="githubUser.login">
-          <img :src="githubUser.avatar_url">
-          <br>
-          <span>{{ githubUser.login }}</span>
-        </p>
-        <p class="user-info pa" v-else>
-          <input type="button" value="登 录" @click="thirdLogin">
-        </p>
-      </div>
-      <nav id="sidebar">
-        <ul class="w" @click="toggleSidebar">
-          <li v-for="(item,index) in navList" :key="index">
-            <nuxt-link :to="{ path: item.route }">{{ item.title }}</nuxt-link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Header/>
 
-    <div class="main-content">
+    <div class="main-content w">
       <nuxt/>
     </div>
 
@@ -34,33 +13,10 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import Header from '../components/header'
   export default {
-    data() {
-      return {
-        navList: [
-          { title: '首页',route: '/' },
-          { title: '技术分享',route: '/article' },
-          { title: '胡言乱语',route: '/mood' },
-          { title: '留言板',route: '/messageBoard' },
-          { title: '关于我',route: '/about' },
-        ],
-      }
-    },
-    computed: {
-      ...mapState({
-        githubUser: state => state.common.githubUser,
-      })
-    },
-    methods: {
-      toggleSidebar(){
-        if(window.outerWidth < 768) {
-          document.querySelector('body').classList.toggle('side');
-        }
-      },
-      thirdLogin(){
-        this.$router.push('/login');
-      }
+    components: {
+      Header
     },
     mounted(){
       let _hmt = _hmt || [];
@@ -107,62 +63,6 @@ html {
           width: 24px;
           bottom: 24px;
           transform: rotate(45deg);
-        }
-      }
-    }
-    header {
-      font-size: 0;
-      .motto {
-        font-size: 20px;
-        .sub-title {
-          top: 50px;
-          left: 20px;
-        }
-        .i-menu {
-          display: none;
-        }
-        .user-info {
-          top: 20px;
-          right: 20px;
-          text-align: center;
-          font-size: 12px;
-          img {
-            width: 50px;
-            border-radius: 50%;
-          }
-          input {
-            background: #f90;
-            color: #fff;
-            padding: 3px 8px;
-            border-radius: 3px;
-            border: 1px solid transparent;
-            &:hover {
-              background: #f70;
-              border-color: #f10;
-            }
-          }
-        }
-      }
-      nav {
-        background: linear-gradient(to left,#f90,#000 40%);
-        ul {
-          @include centerBox(flex-start);
-          font-size: 16px;
-          li {
-            height: 60px;
-            line-height: 60px;
-            cursor: pointer;
-            color: #fff;
-            a {
-              color: inherit;
-              text-decoration: none;
-              display: block;
-              padding: 0 15px;
-            }
-            &:hover {
-              background: #f90;
-            }
-          }
         }
       }
     }
