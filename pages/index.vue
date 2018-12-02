@@ -1,39 +1,136 @@
 <template>
-  <section class="home">
-    <div class="home-l flex1">
-      <article-list :data-list="dataList" page-subject="最新文章"></article-list>
-    </div>
-    <div class="home-r"></div>
+  <section class="home-wrap">
+    <h2 class="page-subject">最新文章</h2>
+    <ul class="articles">
+      <li v-for="(item,index) in articleList" :key="index">
+        <figure>
+          <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">
+            <img :src="baseImgPath + item.brand + '.jpg'" alt="item.brand">
+          </nuxt-link>
+        </figure>
+        <div class="news-inner">
+          <h3>
+            <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">{{ item.title }}</nuxt-link>
+          </h3>
+          <p class="extro-info">
+            <span class="brand"><i class="iconfont icon-Shapecopy"></i>{{ item.brand }}</span>
+            <span class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</span>
+            <!--<span class="viewnum">浏览({{ item.viewnum }})</span>-->
+          </p>
+        </div>
+      </li>
+    </ul>
+
+    <h2 class="page-subject">最近心情</h2>
+    <ul class="moods">
+      <li v-for="(item,index) in moodList" :key="index">
+        <p class="moods-extract">{{ item.content }}</p>
+        <p class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</p>
+      </li>
+    </ul>
+
   </section>
 </template>
 
 <script>
-  import { getArticleList } from "../lib/api"
-  import articleList from '~/components/article-list.vue'
+  import { baseImgPath } from "../lib/env";
+  import { getArticleList, moodList } from "../lib/api"
   export default {
-    components: {
-      'article-list': articleList
-    },
-    data(){
-      return {}
-    },
-    async asyncData ({ params }) {
-      let res = await getArticleList();
+    async asyncData () {
+      let res = await Promise.all([getArticleList(), moodList()]);
       return {
-        dataList: res.rows,
+        articleList: res[0].rows.slice(0,5),
+        moodList: res[1].rows.slice(0,5)
       };
     },
+    async fetch ({ store, params }) {
+      if(store.state.brand.dataList.length) return;
+      await store.dispatch('brand/search');
+    },
+    filters: {
+      abstractFormat(val){
+        return val.replace(/<[^>]+>/g,'').substring(0,200);
+      },
+      formatDate(val){
+        return val ? val.substring(0,19) : '';
+      }
+    },
+    data() {
+      return {
+        baseImgPath: baseImgPath,
+      }
+    }
   }
 </script>
 
 <style lang="scss">
-  .home {
-    //@include centerBox();
-    .home-l {
-
+  .home-wrap {
+    .articles {
+      margin-bottom: 50px;
+      li {
+        @include centerBox();
+        padding: 15px 0 10px;
+        position: relative;
+        border-bottom: 1px solid #eaeaea;
+        figure {
+          width: 80px;
+          img {
+            display: block;
+            width: 50px;
+            height: 30px;
+          }
+        }
+        .news-inner {
+          flex: 1;
+          display: flex;
+          h3 {
+            flex: 1;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 8px;
+            transition: all .5s;
+            margin-bottom: 10px;
+            a {
+              color: #333;
+              text-decoration: none;
+            }
+          }
+          .extro-info {
+            width: 230px;
+            margin: 10px 0;
+            display: inline-block;
+            color: #999;
+            span {
+              .iconfont {
+                color: #db6d4c;
+                margin-right: 6px;
+              }
+              & + span {
+                margin-left: 20px;
+              }
+            }
+          }
+        }
+      }
     }
-    .home-r {
-      /*width: 250px;*/
+
+    .moods {
+      padding: 20px 0;
+      li {
+        display: flex;
+        height: 40px;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eaeaea;
+        .create_time {
+          color: #999;
+          width: 160px;
+          .iconfont {
+            color: #db6d4c;
+            margin-right: 6px;
+          }
+        }
+      }
     }
   }
 </style>

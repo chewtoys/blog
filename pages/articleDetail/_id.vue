@@ -1,6 +1,5 @@
 <template>
-  <div class="article-detail-wrap">
-    <article-category></article-category>
+  <section class="article-detail-wrap">
     <div class="article-detail">
       <h2 class="page-subject">博客正文</h2>
       <h3 class="article-title">{{ articleDetail.title }}</h3>
@@ -8,11 +7,10 @@
         <div class="ql-editor article-content" v-html="articleDetail.content"></div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-  import articleCategory from '~/components/article-category.vue'
   import { getArticleDetail } from '../../lib/api'
   export default {
     head () {
@@ -24,9 +22,6 @@
         ]
       }
     },
-    components: {
-      'article-category': articleCategory,
-    },
     validate ({ params }) {
       return /^\d+$/.test(params.id)  // 必须是number类型
     },
@@ -35,6 +30,7 @@
       return { articleDetail: obj };
     },
     async fetch ({ store, params }) {
+      if(store.state.brand.dataList.length) return;
       await store.dispatch('brand/search');
     },
   }
@@ -42,17 +38,12 @@
 
 <style lang="scss">
   .article-detail-wrap {
-    @include centerBox(center,flex-start);
-    .article-detail {
+    padding: 20px 0;
+    h3.article-title {
+      font-size: 24px;
+      font-weight: 400;
       padding: 20px 0;
-      flex: 1;
-      order: 1;
-      h3.article-title {
-        font-size: 24px;
-        font-weight: 400;
-        padding: 20px 0;
-        color: #38485A;
-      }
+      color: #38485A;
     }
   }
 </style>

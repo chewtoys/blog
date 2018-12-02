@@ -1,16 +1,16 @@
 <template>
-  <div class="mood-wrap">
+  <section class="mood-wrap">
     <h2 class="page-subject">胡言乱语</h2>
     <ul class="moods">
       <li v-for="(item,index) in dataList" :key="index">
         <p class="moods-extract">{{ item.content }}</p>
-        <p class="create_time">{{ item.create_time | formatDate }}</p>
+        <p class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</p>
       </li>
     </ul>
     <div class="loadmore">
       <el-button type="info" size="small" plain @click="loadMore">{{ loadMsg }}</el-button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -22,6 +22,10 @@
         dataList: res.rows,
         total: res.total
       };
+    },
+    async fetch ({ store, params }) {
+      if(store.state.brand.dataList.length) return;
+      await store.dispatch('brand/search');
     },
     filters: {
       formatDate(val){
@@ -38,7 +42,7 @@
     methods: {
       async loadMore(){
         if(this.pageNo*this.pageSize >= this.total ) {
-          return this.loadMsg = '我是有底限的'
+          return this.loadMsg = '就只有这么多了'
         }
         this.pageNo += 1;
         let res = await moodList({ pageNo: this.pageNo,pageSize: this.pageSize });
@@ -66,12 +70,12 @@
           line-height: 22px;
         }
         .create_time {
-          width: 170px;
-          padding-left: 25px;
-          background-image: url("~assets/img/time.png");
-          background-size: 16px;
-          background-position: 0 2px ;
-          background-repeat: no-repeat;
+          width: 180px;
+          padding-left: 10px;
+          .iconfont {
+            color: #db6d4c;
+            margin-right: 6px;
+          }
         }
       }
     }

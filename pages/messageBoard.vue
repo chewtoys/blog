@@ -1,5 +1,5 @@
 <template>
-  <div class="message-wrap">
+  <section class="message-wrap">
     <h2 class="page-subject">留言板</h2>
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item prop="content">
@@ -23,7 +23,7 @@
       </ul>
       <p v-else class="no-message">暂无留言，快来抢占沙发</p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -36,6 +36,10 @@
         dataList: res.rows,
         total: res.total
       };
+    },
+    async fetch ({ store, params }) {
+      if(store.state.brand.dataList.length) return;
+      await store.dispatch('brand/search');
     },
     filters: {
       formatDate(val){

@@ -1,17 +1,11 @@
 <template>
   <header>
     <div class="motto w pr">
-      <img src="~assets/img/logo.png" width="200" height="50">
+      <nuxt-link to="/">
+        <img src="~assets/img/logo.png" width="200" height="50">
+      </nuxt-link>
       <span class="sub-title">If you don't walk out, you will think that this is the whole world</span>
       <span class="i-menu" @click="toggleSidebar"><i></i></span>
-      <p v-if="githubUser.login" class="user-info">
-        <img :src="githubUser.avatar_url">
-        <br>
-        <span>{{ githubUser.login }}</span>
-      </p>
-      <p v-else class="user-info">
-        <input type="button" value="登 录" @click="thirdLogin">
-      </p>
     </div>
     <nav id="sidebar">
       <ul class="w" @click="toggleSidebar">
@@ -29,7 +23,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   export default {
     data() {
       return {
@@ -40,22 +33,36 @@
           { title: '留言板',route: '/messageBoard' },
           { title: '关于我',route: '/about' },
         ],
-        currentIndex: 1,
+        currentIndex: 0,
       }
     },
-    computed: {
-      ...mapState({
-        githubUser: state => state.common.githubUser,
-      })
+    mounted(){
+      if(window.outerWidth <= 768) return;
+      window.addEventListener('scroll',this.handleScroll);
+      switch (this.$route.name) {
+        case 'index': this.currentIndex = 0; break;
+        case 'article': this.currentIndex = 1; break;
+        case 'mood': this.currentIndex = 2; break;
+        case 'messageBoard': this.currentIndex = 3; break;
+        case 'about': this.currentIndex = 4; break;
+        default: this.currentIndex = 1; break;
+      }
     },
     methods: {
+      handleScroll(){
+        let scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        let t = document.querySelector('#sidebar').getBoundingClientRect().top;
+        if(t <= 0) {
+          document.querySelector('#sidebar').classList.add('fixed');
+        }
+        if(scrolltop < 70){
+          document.querySelector('#sidebar').classList.remove('fixed');
+        }
+      },
       toggleSidebar(){
         if(window.outerWidth < 768) {
           document.querySelector('body').classList.toggle('side');
         }
-      },
-      thirdLogin(){
-        this.$router.push('/login');
       }
     }
   }
@@ -64,6 +71,7 @@
 <style lang="scss">
   header {
     font-size: 0;
+    background: #fff;
     .motto {
       display: flex;
       justify-content: space-between;
@@ -75,26 +83,6 @@
       }
       .i-menu {
         display: none;
-      }
-      .user-info {
-        padding-top: 10px;
-        text-align: center;
-        font-size: 12px;
-        img {
-          width: 50px;
-          border-radius: 50%;
-        }
-        input {
-          background: #f90;
-          color: #fff;
-          padding: 3px 8px;
-          border-radius: 3px;
-          border: 1px solid transparent;
-          &:hover {
-            background: #f70;
-            border-color: #f10;
-          }
-        }
       }
     }
     nav {
@@ -118,6 +106,13 @@
             border-bottom: 5px solid #f90;
           }
         }
+      }
+      &.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
       }
     }
   }

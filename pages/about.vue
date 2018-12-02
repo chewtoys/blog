@@ -1,10 +1,10 @@
 <template>
-  <div class="about-wrap">
+  <section class="about-wrap">
     <h2 class="page-subject">关于我</h2>
     <div class="quill-editor ql-container">
       <div class="ql-editor about-text" v-html="info.introduction"></div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -24,6 +24,10 @@
     async asyncData(){
       let { obj } = await aboutInfo();
       return { info: obj };
+    },
+    async fetch ({ store, params }) {
+      if(store.state.brand.dataList.length) return;
+      await store.dispatch('brand/search');
     },
   }
 </script>

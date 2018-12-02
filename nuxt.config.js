@@ -10,10 +10,9 @@ module.exports = {
       { hid: 'description', name: 'description', content: '前端大户个人博客,基于Nuxt+axios+mysql+nginx技术栈' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
-    // script: [{ type: 'text/javascript', charset: 'utf-8', src: 'http://open.51094.com/user/myscript/15bd82635166e1.html'}],
-    // __dangerouslyDisableSanitizers: ['script'],
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '//at.alicdn.com/t/font_852729_lkb7rcj6b1n.css' }
+    ]
   },
   css: [
     '~assets/css/reset.scss',

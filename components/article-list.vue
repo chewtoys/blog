@@ -17,8 +17,8 @@
             <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">阅读全文</nuxt-link>
           </p>
           <p class="extro-info">
-            <span class="brand">{{ item.brand }}</span>
-            <span class="create_time">{{ item.create_time | formatDate }}</span>
+            <span class="brand"><i class="iconfont icon-Shapecopy"></i>{{ item.brand }}</span>
+            <span class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</span>
             <!--<span class="viewnum">浏览({{ item.viewnum }})</span>-->
           </p>
         </div>
@@ -38,7 +38,7 @@
   export default {
     filters: {
       abstractFormat(val){
-        return val.replace(/<[^>]+>/g,'').substring(0,200);
+        return val.replace(/<[^>]+>/g,'').substring(0,100);
       },
       formatDate(val){
         return val ? val.substring(0,19) : '';
@@ -88,7 +88,7 @@
       },
       async loadMore(){
         if(this.pageNo*this.pageSize >= this.total ) {
-          return this.loadMsg = '我是有底限的'
+          return this.loadMsg = '就只有这么多了'
         }
         this.pageNo += 1;
         let data = {
@@ -106,7 +106,6 @@
 <style lang="scss">
   .article-list-wrap {
     flex: 1;
-    padding: 20px 0 80px;
     order: 1;
     .articles {
       li {
@@ -129,6 +128,10 @@
             font-weight: bold;
             transition: all .5s;
             margin-bottom: 10px;
+            a {
+              color: #333;
+              text-decoration: none;
+            }
           }
           .news-extract {
             line-height: 22px;
@@ -142,22 +145,13 @@
             display: inline-block;
             color: #999;
             span {
-              margin: 0 20px 0 0;
-              padding-left: 30px;
-              background-size: 20px;
-              background-repeat: no-repeat;
-            }
-            .brand {
-              background-image: url("~assets/img/brand.png");
-            }
-            .create_time {
-              background-image: url("~assets/img/time.png");
-            }
-            .viewnum {
-              background-image: url("~assets/img/view.png");
-              background-position: center left;
-              background-size: 30px;
-              padding-left: 35px;
+              .iconfont {
+                color: #db6d4c;
+                margin-right: 6px;
+              }
+              & + span {
+                margin-left: 20px;
+              }
             }
           }
         }
