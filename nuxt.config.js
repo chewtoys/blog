@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
   head: {
     title: '前端大户',
     meta: [
@@ -7,11 +7,11 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' },
       { hid: 'author', name: 'author', content: '前端大户' },
       { hid: 'keywords', name: 'keywords', content: '前端大户,个人博客,前端博客,Nuxt,vue服务端渲染,ssr服务端渲染,srr单页面' },
-      { hid: 'description', name: 'description', content: '前端大户个人博客,基于Nuxt+axios+mysql+nginx技术栈' }
+      { hid: 'description', name: 'description', content: '前端大户个人技术博客,基于Nuxt、axios、mysql、nginx技术栈。' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '//at.alicdn.com/t/font_852729_lkb7rcj6b1n.css' }
+      { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_852729_lkb7rcj6b1n.css' },
     ]
   },
   css: [

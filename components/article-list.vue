@@ -14,7 +14,7 @@
           </h3>
           <p class="news-extract">
             {{ item.content | abstractFormat }}
-            <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">阅读全文</nuxt-link>
+            <nuxt-link :to="{ path: '/articleDetail/' + item.id }">阅读全文</nuxt-link>
           </p>
           <p class="extro-info">
             <span class="brand"><i class="iconfont icon-Shapecopy"></i>{{ item.brand }}</span>
@@ -134,6 +134,12 @@
             }
           }
           .news-extract {
+            /*width: 100%;*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
+            /*display: -webkit-box;*/
+            /*-webkit-line-clamp: 2;*/
+            /*-webkit-box-orient: vertical;*/
             line-height: 22px;
             a {
               color: #db6d4c;

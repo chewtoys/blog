@@ -19,7 +19,13 @@
         meta: [
           { hid: 'keywords', name: 'keywords', content: '前端大户,前端大户博客,前端博客,前端大户技术文章,' + this.articleDetail.brand },
           { hid: 'description', name: 'description', content: '前端大户技术文章详情--' + this.articleDetail.title }
-        ]
+        ],
+        link: [
+          // { rel: 'stylesheet', href: 'http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css' }
+        ],
+        script: [
+          // { src: 'http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js' }
+        ],
       }
     },
     validate ({ params }) {
@@ -27,12 +33,16 @@
     },
     async asyncData ({ params }) {
       let { obj } = await getArticleDetail(params);
+      // obj.content = obj.content.replace(/<pre(([\s\S])*?)>/g,"<pre><code  class=\"lang-javascript\">").replace(/<\/pre>/g,"</code></pre>");
       return { articleDetail: obj };
     },
     async fetch ({ store, params }) {
       if(store.state.brand.dataList.length) return;
       await store.dispatch('brand/search');
     },
+    mounted() {
+      // hljs.initHighlightingOnLoad();
+    }
   }
 </script>
 

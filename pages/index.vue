@@ -40,11 +40,10 @@
       let res = await Promise.all([getArticleList(), moodList()]);
       return {
         articleList: res[0].rows.slice(0,5),
-        moodList: res[1].rows.slice(0,5)
+        moodList: res[1].rows.slice(0,5),
       };
     },
     async fetch ({ store, params }) {
-      if(store.state.brand.dataList.length) return;
       await store.dispatch('brand/search');
     },
     filters: {

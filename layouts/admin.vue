@@ -12,15 +12,17 @@
         <nuxt/>
       </div>
 
-      <footer>
-        <p class="copyright">Copyright © 2018 - 前端大户 <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">鄂ICP备17003180号-1</a></p>
-      </footer>
+      <Footer/>
     </div>
   </no-ssr>
 </template>
 
 <script>
+  import Footer from '../components/footer'
   export default {
+    components: {
+      Footer,
+    },
     created(){
       let isClient = process.client;
       if(isClient){
@@ -65,19 +67,6 @@
     }
     .main-content {
       min-height: 750px;
-    }
-    footer{
-      height: 45px;
-      line-height: 45px;
-      text-align: center;
-      background: #000;
-      .copyright {
-        color: #fff;
-        a {
-          color: #666;
-          text-decoration: none;
-        }
-      }
     }
   }
 </style>
