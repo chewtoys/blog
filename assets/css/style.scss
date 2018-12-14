@@ -26,6 +26,7 @@
       top: 0;
       background: #fff;
       z-index: 1;
+      padding-top: 5px;
       height: 50px !important;
       justify-content: center !important;
       img {
@@ -153,5 +154,8 @@
   }
   footer .copyright {
     font-size: 12px;
+  }
+  .hide-mobile {
+    display: none;
   }
 }

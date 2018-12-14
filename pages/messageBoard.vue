@@ -3,7 +3,7 @@
     <h2 class="page-subject">留言板</h2>
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item prop="content">
-        <el-input v-model="form.content" type="textarea" placeholder="登录后才可以发表留言哦！"></el-input>
+        <el-input v-model="form.content" rows="8" type="textarea" placeholder="有任何前端技术方面的疑问都可以留言（联系方式 + 问题)，我会第一时间给出回复。暂时只支持Github第三方登录。"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button :disabled="!githubUser.login || !githubUser.avatar_url" type="primary" size="small" @click="submit">发表留言</el-button>
