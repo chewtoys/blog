@@ -20,12 +20,18 @@
       Right
     },
     mounted(){
-      let _hmt = _hmt || [];
-      (function() {
-        let hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?c8c197b156c1d5a3e827ebe9f2b8df60";
+      // 百度自动推送
+      (function(){
+        let bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
         let s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
+        s.parentNode.insertBefore(bp, s);
+      })();
+      // 百度统计
+      (function(){
+        let el = document.createElement('script');
+        el.innerHTML = `var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?c8c197b156c1d5a3e827ebe9f2b8df60"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();`;
+        document.querySelector('body').appendChild(el);
       })();
       let title = document.title;
       window.onblur = ()=> {
