@@ -1,27 +1,35 @@
 <template>
   <section class="home-wrap">
-    <h2 class="page-subject">最新文章</h2>
+    <div class="page-subject">
+      <h2>最新文章</h2>
+      <nuxt-link to="article">
+        查看更多<i class="el-icon-d-arrow-right"></i>
+      </nuxt-link>
+    </div>
     <ul class="articles">
       <li v-for="(item,index) in articleList" :key="index">
-        <figure>
-          <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">
+        <nuxt-link :to="{ path: '/articleDetail/' + item.id }" :title="item.title">
+          <figure>
             <img :src="baseImgPath + item.brand + '.jpg'" alt="item.brand">
-          </nuxt-link>
-        </figure>
-        <div class="news-inner">
-          <h3>
-            <nuxt-link :to="{ path: '/articleDetail/' + item.id }" title="">{{ item.title }}</nuxt-link>
-          </h3>
-          <p class="extro-info">
-            <span class="brand"><i class="iconfont icon-Shapecopy"></i>{{ item.brand }}</span>
-            <span class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</span>
-            <!--<span class="viewnum">浏览({{ item.viewnum }})</span>-->
-          </p>
-        </div>
+          </figure>
+          <div class="news-inner">
+            <h3>{{ item.title }}</h3>
+            <p class="extro-info">
+              <span class="brand"><i class="iconfont icon-Shapecopy"></i>{{ item.brand }}</span>
+              <span class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</span>
+              <!--<span class="viewnum">浏览({{ item.viewnum }})</span>-->
+            </p>
+          </div>
+        </nuxt-link>
       </li>
     </ul>
 
-    <h2 class="page-subject">最近心情</h2>
+    <div class="page-subject">
+      <h2>最近心情</h2>
+      <nuxt-link to="mood">
+        查看更多<i class="el-icon-d-arrow-right"></i>
+      </nuxt-link>
+    </div>
     <ul class="moods">
       <li v-for="(item,index) in moodList" :key="index">
         <p class="moods-extract">{{ item.content }}</p>
@@ -64,13 +72,30 @@
 
 <style lang="scss">
   .home-wrap {
+    .page-subject {
+      display: flex;
+      justify-content: space-between;
+      a {
+        color: #7d7d7d;
+        font-size: 14px;
+        text-decoration: none;
+        &:hover {
+          color: #db6d4c;
+        }
+      }
+    }
     .articles {
       margin-bottom: 50px;
-      li {
+      li a {
         @include centerBox();
-        padding: 15px 0 10px;
+        color: #333;
+        padding: 15px 0 10px 10px;
         position: relative;
         border-bottom: 1px solid #eaeaea;
+        text-decoration: none;
+        &:hover {
+          background: #f1f1f1;
+        }
         figure {
           width: 80px;
           img {
@@ -95,10 +120,14 @@
             }
           }
           .extro-info {
-            width: 230px;
+            width: 250px;
             margin: 10px 0;
             display: inline-block;
             color: #999;
+            .brand {
+              display: inline-block;
+              width: 80px;
+            }
             span {
               .iconfont {
                 color: #db6d4c;
@@ -120,7 +149,11 @@
         height: 40px;
         justify-content: space-between;
         align-items: center;
+        padding-left: 10px;
         border-bottom: 1px solid #eaeaea;
+        &:hover {
+          background: #f1f1f1;
+        }
         .create_time {
           color: #999;
           width: 160px;
