@@ -30,6 +30,11 @@
   import { addMessage,messageList } from '../lib/api'
   import { mapState } from 'vuex'
   export default {
+    head () {
+      return {
+        title: '前端大户-前端学习交流平台',
+      }
+    },
     async asyncData(){
       let res = await messageList();
       return {

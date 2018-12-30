@@ -13,9 +13,6 @@
     head () {
       return {
         title: '关于前端大户',
-        meta: [
-          { hid: 'description', name: 'description', content: '关于前端大户,前端大户简介' }
-        ],
         script: [
           { src: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js' }
         ]

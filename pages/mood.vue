@@ -16,6 +16,11 @@
 <script>
   import { moodList } from '../lib/api'
   export default {
+    head () {
+      return {
+        title: '前端大户-生活感悟',
+      }
+    },
     async asyncData(){
       let res = await moodList({ pageNo: 1,pageSize: 10 });
       return {
