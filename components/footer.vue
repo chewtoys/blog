@@ -5,8 +5,8 @@
       <span>{{ statistics.pv_count }}</span>
       <b>访客数</b>
       <span>{{ statistics.visitor_count }}</span>
-      <!--<b>IP数</b>-->
-      <!--<span>{{ statistics.ip_count }}</span>-->
+      <b>平均时长</b>
+      <span>{{ statistics.avg_visit_time.substr(3) }}</span>
       <span class="hide-mobile">每半小时自动更新</span>
     </p>
     <p class="copyright">Copyright © 2018 - 前端大户 <span class="hide-mobile">Power by Nuxt </span> <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">鄂ICP备17003180号-1</a></p>

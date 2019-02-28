@@ -64,16 +64,10 @@
       ...mapMutations('common',['setGithubUserInfo']),
       submit(){
         this.$refs.form.validate(async (valid) => {
-          if (valid) {
-            let res = await login(this.form);
-            if(res.flag){
-              sessionStorage.setItem('token',res.token);
-              this.$notify.success({title: '操作提示', message: '登录成功'});
-              this.$router.push('/admin');
-            }else {
-              this.$notify.success({title: '操作提示', message: res.msg});
-            }
-          }
+          this.$notify.success({
+            title: '提示',
+            message: '管理后台重构中，暂不对外开放'
+          });
         });
       },
       gitLogin(){

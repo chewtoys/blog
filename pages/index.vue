@@ -25,19 +25,6 @@
     </ul>
 
     <div class="page-subject">
-      <h2>最近心情</h2>
-      <nuxt-link to="mood">
-        查看更多<i class="el-icon-d-arrow-right"></i>
-      </nuxt-link>
-    </div>
-    <ul class="moods">
-      <li v-for="(item,index) in moodList" :key="index">
-        <p class="moods-extract">{{ item.content }}</p>
-        <p class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</p>
-      </li>
-    </ul>
-
-    <div class="page-subject">
       <h2>最近留言</h2>
       <nuxt-link to="messageBoard">
         查看更多<i class="el-icon-d-arrow-right"></i>
@@ -56,14 +43,13 @@
 
 <script>
   import { baseImgPath } from "../lib/env";
-  import { getArticleList, moodList, messageList } from "../lib/api"
+  import { getArticleList, messageList } from "../lib/api"
   export default {
     async asyncData () {
-      let res = await Promise.all([getArticleList(), moodList(), messageList()]);
+      let res = await Promise.all([getArticleList(), messageList()]);
       return {
         articleList: res[0].rows.slice(0,10),
-        moodList: res[1].rows.slice(0,8),
-        messageList: res[2].rows.slice(0,8),
+        messageList: res[1].rows.slice(0,8),
       };
     },
     async fetch ({ store, params }) {
@@ -156,30 +142,6 @@
         }
       }
     }
-
-    .moods {
-      padding: 20px 0;
-      li {
-        display: flex;
-        height: 40px;
-        justify-content: space-between;
-        align-items: center;
-        padding-left: 10px;
-        border-bottom: 1px solid #eaeaea;
-        &:hover {
-          background: #f1f1f1;
-        }
-        .create_time {
-          color: #999;
-          width: 160px;
-          .iconfont {
-            color: #db6d4c;
-            margin-right: 6px;
-          }
-        }
-      }
-    }
-
     .messageList {
       padding: 20px 0;
       li {
