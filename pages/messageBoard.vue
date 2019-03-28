@@ -3,10 +3,10 @@
     <h2 class="page-subject">留言板</h2>
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item prop="content">
-        <el-input v-model="form.content" rows="8" type="textarea" placeholder="有任何前端技术方面的疑问都可以留言（联系方式 + 问题)，我会第一时间给出回复。暂时只支持Github第三方登录。"></el-input>
+        <rich-editor v-model="form.content"></rich-editor>
       </el-form-item>
       <el-form-item>
-        <el-button :disabled="!githubUser.login || !githubUser.avatar_url" type="primary" size="small" @click="submit">发表留言</el-button>
+        <el-button type="primary" size="small" @click="submit">发表留言</el-button>
       </el-form-item>
     </el-form>
     <div class="message-history">
@@ -16,7 +16,7 @@
           <img :src="item.avatar_url" width="50">
           <div class="message-inner">
             <p class="message-account"><span>{{ item.account }}</span>   第{{ item.id }}楼</p>
-            <p class="message-content">{{ item.content }}</p>
+            <div class="message-content" v-html="item.content"></div>
             <p class="message-time">{{ item.create_time | formatDate }}</p>
           </div>
         </li>
@@ -28,8 +28,12 @@
 
 <script>
   import { addMessage,messageList } from '../lib/api'
+  import richEditor from '../components/rich-editor.vue'
   import { mapState } from 'vuex'
   export default {
+    components: {
+      richEditor,
+    },
     head () {
       return {
         title: '前端大户-前端学习交流平台',
@@ -66,6 +70,11 @@
         githubUser: state => state.common.githubUser,
       })
     },
+    watch: {
+      ['form.content']() {
+        this.$refs.form.validateField('content');
+      }
+    },
     methods: {
       submit() {
         this.$refs.form.validate(async (valid) => {
@@ -77,6 +86,7 @@
             };
             let res = await addMessage(data);
             res.flag && this.$notify.success({title: '操作提示', message: '发表成功'});
+            this.$refs.form.resetFields();
             let resp = await messageList();
             this.dataList = resp.rows;
             this.total = resp.total;
@@ -123,6 +133,10 @@
           .message-content {
             padding: 20px 0;
             line-height: 20px;
+            img {
+              max-width: 100%;
+              max-height: 100px;
+            }
           }
           .message-time {
             color: #9B9B9B;
