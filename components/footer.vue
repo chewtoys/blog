@@ -23,6 +23,7 @@
           pv_count: 100,
           visitor_count: 100,
           ip_count: 100,
+          avg_visit_time: '00.00.01',
         }
       }
     },
