@@ -33,7 +33,7 @@
     <ul class="messageList">
       <li v-for="(item,index) in messageList" :key="index">
         <img :src="item.avatar_url" width="50">
-        <p class="moods-extract">{{ item.content }}</p>
+        <p class="moods-extract" v-html="item.content"></p>
         <p class="create_time"><i class="iconfont icon-shijian"></i>{{ item.create_time | formatDate }}</p>
       </li>
     </ul>
@@ -160,6 +160,10 @@
         .moods-extract {
           width: 630px;
           line-height: 24px;
+          img {
+            max-width: 200px;
+            max-height: 50px;
+          }
         }
         .create_time {
           color: #999;
