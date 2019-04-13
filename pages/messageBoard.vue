@@ -56,6 +56,7 @@
   import { addMessage,messageList } from '../lib/api'
   import richEditor from '../components/rich-editor.vue'
   import { mapState } from 'vuex'
+
   export default {
     components: {
       richEditor,

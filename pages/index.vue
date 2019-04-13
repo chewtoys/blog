@@ -44,6 +44,7 @@
 <script>
   import { baseImgPath } from "../lib/env";
   import { getArticleList, messageList } from "../lib/api"
+
   export default {
     async asyncData () {
       let res = await Promise.all([getArticleList(), messageList()]);
@@ -154,7 +155,7 @@
         &:hover {
           background: #f1f1f1;
         }
-        img {
+        &>img {
           border-radius: 50%;
         }
         .moods-extract {
