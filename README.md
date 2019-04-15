@@ -21,3 +21,8 @@
 > 其它： 服务端代码后面会重构，所以暂未开源，有需要的可以去我博客[https://www.lzzj.online](https://www.lzzj.online)留言评论区留下邮箱，我会私下提供。
 
 
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2019 South of the Clouds
