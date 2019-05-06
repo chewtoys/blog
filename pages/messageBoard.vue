@@ -13,7 +13,7 @@
                 <span>  # 第{{ total - index }}楼</span>
                 <button @click="showDialog(item.id, item.account, total - index)">回复</button>
               </p>
-              <div class="message-content" v-html="item.content"></div>
+              <div v-preview class="message-content" v-html="item.content"></div>
               <p class="message-time">{{ item.create_time | formatDate }}</p>
             </div>
           </div>
@@ -25,7 +25,7 @@
                   <span>{{ reply.account === 'xiaoyao316' ? '前端大户': reply.account }}</span>
                   <span>{{ reply.create_time | formatDate }}</span>
                 </p>
-                <div class="message-content" v-html="reply.content"></div>
+                <div v-preview class="message-content" v-html="reply.content"></div>
               </div>
             </div>
           </div>
@@ -201,6 +201,7 @@
               padding: 20px 0;
               line-height: 20px;
               img {
+                cursor: pointer;
                 max-width: 100%;
                 max-height: 100px;
               }
@@ -229,7 +230,16 @@
           .message-content {
             color: #7d7d7d;
             padding: 10px 0 !important;
+            img {
+              cursor: pointer;
+            }
           }
+        }
+        pre {
+          white-space: pre-wrap;
+          white-space: -moz-pre-wrap;
+          white-space: -o-pre-wrap;
+          word-wrap: break-word;
         }
         &:hover .message-box .message-inner .message-account button{
           display: block;

@@ -29,6 +29,7 @@ module.exports = {
   plugins: [
     { src:'~plugins/element-ui', ssr: true },
     { src: "~plugins/vue-quill-editor.js", ssr: false },
+    { src: "@/plugins/preview", ssr: false }
   ],
   /*
   ** Build configuration
