@@ -27,7 +27,9 @@
     },
     methods:{
       open(e){
-        e.target.parentNode.querySelectorAll('img').forEach(L => {
+				let imgNodes = e.target.parentNode.querySelectorAll('img');
+        if(!imgNodes.length) return;
+        imgNodes.forEach(L => {
           this.picList.push(L.src);
         });
         this.visiable = true;
