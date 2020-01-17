@@ -20,6 +20,7 @@
 ##### 请随手star一下，感谢！  
 
 > 其它： 服务端代码后面会重构，所以暂未开源，有需要的可以去我博客[https://www.lzzj.online](https://www.lzzj.online)留言评论区留下邮箱，我会私下提供。
+> 更新：https://pan.baidu.com/s/1jfFGUGzt0hjdIF4VWzdrnA 直接放出来了，没有重构，仅供参考。
 
 
 ## License
